@@ -10,7 +10,7 @@ const templateHtml = ({data}) => {
             </nav>`
 }
 
-export const NavigationView = async ({renderOn, data}) => {
+export const NavigationView = ({renderOn, data}) => {
     const element = elementFrom({html: templateHtml({data})});
     console.log(element)
 
