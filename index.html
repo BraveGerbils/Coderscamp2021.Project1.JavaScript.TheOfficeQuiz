@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Office - Quiz</title>
-    <link rel="stylesheet" href="styles/style.css"/>
-</head>
-<body>
-    <div id="root"></div>
-    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Office - Quiz</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="root"></div>
+        <br>
+        <br>
+        <br>
+        <div class="clock">
+            <button class="start">START</button>
+            <button class="end"><img src="/src/assets/img/clock-trash.png" alt="end game icon" class="end-img"></button>
+            <!-- DODAĆ BUTTON ZAKAŃCZAJĄCY GRĘ PRZED CZASEM -->
+            <div class="clock-display">
+                <div class="clock-displayWrap">
+                    <div class="clock-displayMin">00</div>
+                    <div class="clock-displaySec">00</div>
+                </div>
+                <div class="clock-displayWrap">
+                    <p class="clock-paragraphMin clock-paragraph">minuty</p>
+                    <p class="clock-paragraphSec clock-paragraph">sekundy</p>
+                </div>
+            </div>
+            <div class="clock-btnWrap">
+                <button class="clock-btn clock-plusMin">+</button>
+                <button class="clock-btn clock-remMin">-</button>
+                <button class="clock-btn clock-plusSec">+</button>
+                <button class="clock-btn clock-remSec">-</button>
+            </div>
+            <div class="clock-bckg"></div>
+        </div>
+     
+    </div>
     <script type="module" src="src/index.js"></script>
+    <script defer src="src/clock.js"></script>
 </body>
 </html>
