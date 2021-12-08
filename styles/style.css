@@ -54,7 +54,7 @@
 
 .clock-display {
     font-family: 'Russo One', sans-serif;
-    font-size: 68px;
+    font-size: 60px;
     -webkit-text-stroke: 2px black;
     color: white;
     letter-spacing: 2px;
@@ -89,6 +89,22 @@ color: black;
 
 }
 
+/* start and end game */
+
+.end {
+width:20px;
+box-shadow: 1px 1px 1px 1px black;
+z-index: 1000;
+}
+
+.end-img {
+    width:16px;
+    cursor: pointer;
+    
+}
+.end-img:hover {
+  transform: scale(1.2);
+}
 .start {
     font-family: 'Russo One', sans-serif;
     width: 100%;
@@ -102,5 +118,6 @@ color: black;
 .start:hover {
     transform: scale(1.2)
 }
+
 
 /* END CLOCK STYLES */

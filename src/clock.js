@@ -12,10 +12,11 @@ function showTime() {
     const remMin = document.querySelector('.clock-remMin');
     const plusSec = document.querySelector('.clock-plusSec');
     const remSec = document.querySelector('.clock-remSec');
-    const start = document.querySelector('.start')
+    const start = document.querySelector('.start');
+    const end = document.querySelector('.end');
 
     //arrays and integers for if statements in function makeNumber
-    let secondArr = [];
+    let secundArr = [];
     let minuteArr = [];
     let num = 0;
     let i = 0;
@@ -26,6 +27,7 @@ function showTime() {
     remMin.addEventListener('click', makeNumber)
     remSec.addEventListener('click', makeNumber)
     start.addEventListener('click', makeNumber);
+    end.addEventListener('click', makeNumber);
 
     //function displaying numbers, calculating total time, and ending game
     function makeNumber(e) {
@@ -55,51 +57,52 @@ function showTime() {
             displayMin.innerText = minute.toString().padStart(2, '0');
         }
 
-        //Adding and removing + displaying seconds
+        //Adding and removing + displaying secunds
         if (classes == 'clock-btn clock-plusSec') {
             i++
-            secondArr.push(i)
-            let second = secondArr.length
-            displaySec.innerText = second.toString().padStart(2, '0');
-            if (second >= "60") {
+            secundArr.push(i)
+            let secund = secundArr.length
+            displaySec.innerText = secund.toString().padStart(2, '0');
+            if (secund >= "60") {
                 displaySec.innerText = "00"
-                secondArr.length = 0
+                secundArr.length = 0
             }   
         }
         if (classes == 'clock-btn clock-remSec') {
             if (displaySec.innerText == "00") {
-                secondArr.length = 60;
+                secundArr.length = 60;
             }
-            if (second >= 59) {
-                displaySec.innerText = second.toString().padStart(2, '0');
+            if (secund >= 59) {
+                displaySec.innerText = secund.toString().padStart(2, '0');
             }
             i--
-            secondArr.pop()
-            let second = secondArr.length
-            displaySec.innerText = second.toString().padStart(2, '0');
+            secundArr.pop()
+            let secund = secundArr.length
+            displaySec.innerText = secund.toString().padStart(2, '0');
         }
      
+        let totalTime = secundArr.length + (minuteArr.length * 60)
         //Start counting down
         if (classes == 'start') {
             start.disabled=true;
-            let totalTime = secondArr.length + (minuteArr.length * 60)
-            let countTime = secondArr.length + (minuteArr.length * 60)
+           
+            let countTime = secundArr.length + (minuteArr.length * 60)
             let currentTime = 0
             let interval = setInterval(timeUpdate, 1000)
 
             function timeUpdate() {
                 if (totalTime > 0) {
                     totalTime--
-                    secondArr.pop();
-                    displaySec.innerText = secondArr.length.toString().padStart(2, '0');
+                    secundArr.pop();
+                    displaySec.innerText = secundArr.length.toString().padStart(2, '0');
                     currentTime++
                     let progressTime = (currentTime * 100)/ countTime;
                     clockBckg.style.height = `${progressTime}%`
                 }
 
                 if (displayMin.innerText != "00" && displaySec.innerText == "00") {
-                    secondArr.length = 61;
-                    secondArr.pop();
+                    secundArr.length = 61;
+                    secundArr.pop();
                 }
 
                 if (displaySec.innerText == "59") {
@@ -120,6 +123,16 @@ function showTime() {
                     console.log("Czas minął")
                 }
             }
+        }
+        if(classes== "end") {
+            // totalTime = 0;
+            // clockBckg.style.height = "0%"
+            // clockBckg.style.transition = "none"
+            // displayMin.innerHTML = "00";
+            // displaySec.innerHTML = "00";
+            // minuteArr.length = 0;
+            // secundArr.length = 0;
+            console.log(displayMin.innerText, displaySec.innerText)
         }
     }
 }
