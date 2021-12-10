@@ -37,10 +37,11 @@ export const TimerView = ({renderOn, data}) => {
     document.querySelector(renderOn).appendChild(element);
     console.log(renderOn)
 
-
-    //display queryselectors
+    //display elements
     const displayMin = document.querySelector('.clock-displayMin');
     const displaySec = document.querySelector('.clock-displaySec');
+    
+    //background-change element
     const clockBckg = document.querySelector('.clock-bckg');
 
     //buttons queryselectors
@@ -51,7 +52,6 @@ export const TimerView = ({renderOn, data}) => {
     const start = document.querySelector('.clock-start');
     const end = document.querySelector('.clock-end');
    
-    
     //adding function makeNumber for buttons
     plusMin.addEventListener('click', makeNumber);
     plusSec.addEventListener('click', makeNumber);
@@ -126,7 +126,8 @@ export const TimerView = ({renderOn, data}) => {
                     displaySec.innerText = secundeArr.length.toString().padStart(2, '0');
                     currentTime++;
                     let progressTime = (currentTime * 100) / countTime;
-                    clockBckg.style.height = `${progressTime}%`;
+                    let progressPerc = `${progressTime}%`
+                    clockBckg.style.height = progressPerc;
                 }
 
                 if (displayMin.innerText != "00" && displaySec.innerText == "00") {

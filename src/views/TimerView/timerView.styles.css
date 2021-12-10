@@ -21,7 +21,9 @@
     bottom: 0;
     border-radius: 8px;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.767);
+    background-image: url("/src/assets/img/clock-bckgUpdate.png");
+    opacity: .5;
+    background-size: cover;
     transition: height linear;
 }
 
@@ -83,9 +85,6 @@ color: black;
 }
 
 /* start and end game */
-
-
-
 .clock-end {
 width:20px;
 padding: 0;
@@ -93,13 +92,14 @@ box-shadow: 1px 1px 1px 1px black;
 z-index: 1000;
 }
 
+.clock-end:hover {
+    transform: scale(1.2);
+  }
 .clock-endImg {
     width:16px;
     cursor: pointer;
 }
-.clock-endImg:hover {
-  transform: scale(1.2);
-}
+
 .clock-start {
     font-family: 'Russo One', sans-serif;
     width: 100%;
