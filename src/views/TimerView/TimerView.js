@@ -110,8 +110,7 @@ export const TimerView = ({renderOn, data}) => {
         //Start counting down and change background
         else if (classes == 'clock-start') {
             start.style.visibility = "hidden"
-            buttons.style.visibility = "hidden"
-
+            buttons.style.visibility = "hidden";
             let totalTime = secundeArr.length + (minuteArr.length * 60);
             let countTime = secundeArr.length + (minuteArr.length * 60);
             let currentTime = 0;
@@ -140,16 +139,23 @@ export const TimerView = ({renderOn, data}) => {
                 }
 
                 if (totalTime == 0) {
-                    setTimeout(() => { clockBckg.style.height = "0%" }, 2000);
-                    start.style.visibility = "visible"
-                    buttons.style.visibility = "visible"
-
+                    setTimeout(() => { 
+                        clockBckg.style.height = "0%"; 
+                        start.style.visibility = "visible"
+                        buttons.style.visibility = "visible" 
+                    }, 2000);
                     totalTime == 0
                     clockBckg.style.height = "100%";
                     clearInterval(interval);
-
-                    console.log("Czas minął");
+                    console.log("Czas minął"); 
                 }
+                if (totalTime == 0) {    
+                    
+                }
+                    
+
+                    
+                
             }
         }
     }

@@ -24,7 +24,7 @@
     background-image: url("/src/assets/img/clock-bckgUpdate.png");
     opacity: .5;
     background-size: cover;
-    transition: height linear;
+    transition: height 1s linear;
 }
 
 .clock-btnWrap {
