@@ -8,6 +8,7 @@ const templateHtml = ({data}) => {
                 <a class="link">${data.link3}</a>
                 <button id="nav-button">BUTTON</button>
             </nav>`
+
 }
 
 export const NavigationView = ({renderOn, data}) => {

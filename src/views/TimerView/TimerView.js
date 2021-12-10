@@ -1,6 +1,42 @@
 
-//function for wraping all project
-function showTime() {
+
+import style from "./timerView.styles.css";
+import { elementFrom } from "../../shared/dom";
+
+const templateHtml = ({data}) => {
+    return `
+    <div class="clock">
+    <button class="clock-start" id="start-BTN">${data.buttonStart}</button>
+    <button class="clock-end" title="restart time">${data.buttonEnd}</button>
+    <div class="clock-display">
+        <div class="clock-displayWrap">
+            <div class="clock-displayMin">${data.displayMin}</div>
+            <div class="clock-displaySec">${data.displaySec}</div>
+        </div>
+        <div class="clock-displayWrap">
+            <p class="clock-paragraphMin clock-paragraph">${data.paragraphMin}</p>
+            <p class="clock-paragraphSec clock-paragraph">${data.paragraphSec}</p>
+        </div>
+    </div>
+    <div class="clock-btnWrap">
+        <button class="clock-btn clock-plusMin">${data.plusBtn}</button>
+        <button class="clock-btn clock-remMin">${data.minBtn}</button>
+        <button class="clock-btn clock-plusSec">${data.plusBtn}</button>
+        <button class="clock-btn clock-remSec" >${data.minBtn}</button>
+    </div>
+    <div class="clock-bckg"></div>
+</div>`
+
+}
+
+
+export const TimerView = ({renderOn, data}) => {
+    const element = elementFrom({html: templateHtml({data})});
+    console.log(element)
+
+    document.querySelector(renderOn).appendChild(element);
+    console.log(renderOn)
+
 
     //display queryselectors
     const displayMin = document.querySelector('.clock-displayMin');
@@ -12,9 +48,10 @@ function showTime() {
     const remMin = document.querySelector('.clock-remMin');
     const plusSec = document.querySelector('.clock-plusSec');
     const remSec = document.querySelector('.clock-remSec');
-    const start = document.querySelector('.start');
-    const end = document.querySelector('.end');
-
+    const start = document.querySelector('.clock-start');
+    const end = document.querySelector('.clock-end');
+   
+    
     //adding function makeNumber for buttons
     plusMin.addEventListener('click', makeNumber);
     plusSec.addEventListener('click', makeNumber);
@@ -28,14 +65,13 @@ function showTime() {
     let minuteArr = [];
     let minute = minuteArr.length;
     let secunde = secundeArr.length;
-    let num = 0;
     let i = 0;
 
     function makeNumber(e) {
 
-        function adding(num, array, variable, display, number) {
-            num++;
-            array.push(num);
+        function adding(i, array, variable, display, number) {
+            i++;
+            array.push(i);
             variable = array.length;
             display.innerText = variable.toString().padStart(2, '0');
             if (variable >= number) {
@@ -59,19 +95,19 @@ function showTime() {
 
        //buttons and their behaviors
         if (classes == "clock-btn clock-plusMin") {
-            adding(num, minuteArr, minute, displayMin, 100);
+            adding(i, minuteArr, minute, displayMin, 100);
         }else if (classes == 'clock-btn clock-remMin') {
             removing(i, minuteArr, minute, displayMin, 100, 99)
         }else if (classes == 'clock-btn clock-plusSec') {
             adding(i, secundeArr, secunde, displaySec, 60);
         }else if (classes == 'clock-btn clock-remSec') {
             removing(i, secundeArr, secunde, displaySec, 60, 99)
-        }else if (e.target.parentNode.className == "end") {
+        }else if (classes == "clock-end") {
             history.go();
         }
 
         //Start counting down and change background
-        else if (classes == 'start') {
+        else if (classes == 'clock-start') {
             start.disabled = true;
             plusMin.disabled = true;
             remMin.disabled = true;
@@ -122,4 +158,4 @@ function showTime() {
         }
     }
 }
-showTime()
+
