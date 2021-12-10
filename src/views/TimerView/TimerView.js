@@ -51,7 +51,8 @@ export const TimerView = ({renderOn, data}) => {
     const remSec = document.querySelector('.clock-remSec');
     const start = document.querySelector('.clock-start');
     const end = document.querySelector('.clock-end');
-   
+    const buttons = document.querySelector('.clock-btnWrap');
+
     //adding function makeNumber for buttons
     plusMin.addEventListener('click', makeNumber);
     plusSec.addEventListener('click', makeNumber);
@@ -108,11 +109,8 @@ export const TimerView = ({renderOn, data}) => {
 
         //Start counting down and change background
         else if (classes == 'clock-start') {
-            start.disabled = true;
-            plusMin.disabled = true;
-            remMin.disabled = true;
-            plusSec.disabled = true;
-            remSec.disabled = true;
+            start.style.visibility = "hidden"
+            buttons.style.visibility = "hidden"
 
             let totalTime = secundeArr.length + (minuteArr.length * 60);
             let countTime = secundeArr.length + (minuteArr.length * 60);
@@ -143,11 +141,8 @@ export const TimerView = ({renderOn, data}) => {
 
                 if (totalTime == 0) {
                     setTimeout(() => { clockBckg.style.height = "0%" }, 2000);
-                    start.disabled = false;
-                    plusMin.disabled = false;
-                    remMin.disabled = false;
-                    plusSec.disabled = false;
-                    remSec.disabled = false;
+                    start.style.visibility = "visible"
+                    buttons.style.visibility = "visible"
 
                     totalTime == 0
                     clockBckg.style.height = "100%";
