@@ -1,18 +1,22 @@
-import { NavigationView } from "../views/NavigationView/NavigationView";
 import { fetchCharacters} from "./officeApi";
+import { goodAnswer} from "../views/goodAnswer/goodAnswer";
 
 export const App = ({renderOn}) => {
-    
-    const urlOffice = 'https://officeapi.dev/api/characters/random';
-    const urlStarWars = 'https://swapi.dev/api/people/1';
-    const navigationData = {
-        link1: "LINK1",
-        link2: "LINK2",
-        link3: "LINK3"
+        
+ 
+    const questionsData = {
+        buttonCategory1: "category 1",
+        buttonCategory2: "category 2",
+        buttonCategory3: "category 3",
+        questionWindow: "question",
+        buttonAnswer1: "answer 1",
+        buttonAnswer2: "answer 2",
+        buttonAnswer3: "answer 3",
+        buttonAnswer4: "answer 4",
     }
-    fetchCharacters(urlOffice);
-    fetchCharacters(urlStarWars);
 
-    NavigationView({renderOn: renderOn, data: navigationData});
+   
+  
+    goodAnswer({renderOn: renderOn, data:questionsData});
 
 }
