@@ -4,13 +4,11 @@ import { elementFrom } from "../../shared/dom";
 const templateHtml = ({data}) => {
     return `<div id="office-app" class="office-app">
                 <div class="office-header">
-                    <a class="office-logo" href="/index.html">
-                        <img class="office-logo" src="static/ui/office-logo-image.png" alt="Office Logo Image"/>
-                    </a>
+                    <div class="office-logo">
+                    </div>
                 </div>
                 <div class="office-content">
                     <div class="office-bar-left">
-                        <p>left bar</p>
                     </div>
                     <div class="office-main-body">
                         <div class="office-gamemode-bar">
@@ -28,9 +26,10 @@ const templateHtml = ({data}) => {
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </div>
                                 </div>
-                                <a class="office-gamemode-character-template">
-                                    <img class="office-gamemode-character-template-img" src="static/images/character-template-img.jpg" alt="Character template Image"/>
-                                </a>
+                                <div class="office-gamemode-character-template">
+                                    <div class="office-gamemode-character-template-img">
+                                    </div>
+                                </div>
                             </div>
                             <div class="office-gamemode-buttons">
                                 <div class="office-gamemode-playbutton">
@@ -43,7 +42,6 @@ const templateHtml = ({data}) => {
                         </div>
                     </div>
                     <div class="office-bar-right">
-                        <p>right bar</p>
                     </div>
                 </div>
             </div>
