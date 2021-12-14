@@ -17,8 +17,8 @@ export const App = ({renderOn}) => {
         buttonEnd: '🦄',
         displayMin: "00",
         displaySec:"00",
-        paragraphMin: "minuty",
-        paragraphSec: "sekundy",
+        paragraphMin: "minutes",
+        paragraphSec: "secundes",
         plusBtn: "+",
         minBtn: "-",
     }

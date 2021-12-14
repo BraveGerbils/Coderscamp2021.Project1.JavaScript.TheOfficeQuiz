@@ -1,9 +1,10 @@
 import style from "./resultView.styles.css";
+import { TimerView } from "../TimerView/TimerView";
 import { elementFrom } from "../../shared/dom";
 //src\assets\img\result-dwight.png
 const templateHtml = ({ data }) => {
     return `
-    <div class="result"> 
+    <div id="result" class="result"> 
         <button id="result-escBtn" class="result-esc">X</button>
         
         <h2 class="result-heading">GRATS BOSS!</h2>
@@ -27,9 +28,32 @@ const templateHtml = ({ data }) => {
 
 export const ResultView = ({ renderOn, data }) => {
     const element = elementFrom({ html: templateHtml({ data }) });
-    console.log(element)
+    console.log(element);
 
     document.querySelector(renderOn).appendChild(element);
-    console.log(renderOn)
+    console.log(renderOn);
 
+
+    const escapeBtn = document.getElementById('result-escBtn').addEventListener('click', function () {
+        element.style.display = "none";
+        history.go();
+    })
+
+    const start = document.getElementById('start').addEventListener('click', function () {
+        const minutes = document.getElementById('clock-displayMin').innerText;
+        const secundes = document.getElementById('clock-displaySec').innerText;
+        let totalTime = Number(minutes * 60) + Number(secundes);
+
+        let countTimeInterval = setInterval(countTime, 1000);
+
+        function countTime() {
+            totalTime--;
+            console.log(totalTime);
+            if (totalTime == 0) {
+                setTimeout(() => { element.style.display = "block" }, 1000);
+                clearInterval(countTimeInterval);
+            }
+        }
+    })
 }
+

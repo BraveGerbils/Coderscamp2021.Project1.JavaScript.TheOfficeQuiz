@@ -1,7 +1,9 @@
 
 
 import style from "./timerView.styles.css";
+import { ResultView } from "../ResultView/ResultView";
 import { elementFrom } from "../../shared/dom";
+
 
 const templateHtml = ({data}) => {
     return `
@@ -12,8 +14,8 @@ const templateHtml = ({data}) => {
     <button class="clock-end" title="restart time">${data.buttonEnd}</button>
     <div class="clock-display">
         <div class="clock-displayWrap">
-            <div class="clock-displayMin">${data.displayMin}</div>
-            <div class="clock-displaySec">${data.displaySec}</div>
+            <div class="clock-displayMin" id="clock-displayMin">${data.displayMin}</div>
+            <div class="clock-displaySec" id="clock-displaySec">${data.displaySec}</div>
         </div>
         <div class="clock-displayWrap">
             <p class="clock-paragraphMin clock-paragraph">${data.paragraphMin}</p>
@@ -31,7 +33,6 @@ const templateHtml = ({data}) => {
 </div>`
 
 }
-
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});
@@ -95,10 +96,11 @@ const templateHtml = ({data}) => {
             let totalTime = secundes + (minutes * 60);
             let countTime = secundes + (minutes * 60);
             let currentTime = 0;
+            
             let displayInterval= setInterval(displayUpdate, 1000);
-            console.log("minutes " + minutes + " a to secundes " + secundes)
 
             function displayUpdate() {
+
                 if (totalTime > 0) {
                     totalTime--;
                     secundes--
@@ -107,7 +109,6 @@ const templateHtml = ({data}) => {
                     let progressTime = (currentTime * 100) / countTime;
                     let progressPerc = `${progressTime}%`
                     clockBckg.style.height = progressPerc;
-                    console.log(totalTime)
                 }
 
                 if (minutes != 0 && secundes == 0) {
@@ -127,7 +128,7 @@ const templateHtml = ({data}) => {
                         totalTime == 0
                         clockBckg.style.height = "100%";
                         clearInterval(displayInterval);
-                        console.log("Czas minął"); 
+                        ResultView()
                 }
               
              

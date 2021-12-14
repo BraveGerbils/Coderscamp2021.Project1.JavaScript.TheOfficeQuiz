@@ -12,6 +12,7 @@
     position: relative;
     background-color: #E8D8B1;
     border-radius: 8px;
+    display: none;
     
 }
 
@@ -58,6 +59,7 @@
     background: transparent;
     background-color: #fff;
     border: 2px solid #fff;
+    border-radius: 8px;
     
 }
 
@@ -87,6 +89,7 @@
     background: transparent;
     background-color:#fff;
     border: 1px solid transparent;
+    border-radius: 8px;
 }
 .result-save:hover {
     background-color: #406718;
@@ -96,10 +99,7 @@
 
 .result-wrp {
     display: flex;
-
 }
-
-
 
 
 @media screen and (max-width: 415px) { 
