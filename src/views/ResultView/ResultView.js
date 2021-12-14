@@ -45,14 +45,19 @@ export const ResultView = ({ renderOn, data }) => {
         let totalTime = Number(minutes * 60) + Number(secundes);
 
         let countTimeInterval = setInterval(countTime, 1000);
+        if (secundes == 0 && totalTime == 0) {
+            clearInterval(countTimeInterval);
+        }
 
         function countTime() {
             totalTime--;
             console.log(totalTime);
-            if (totalTime == 0) {
+            
+            if (totalTime <= 0) {
                 setTimeout(() => { element.style.display = "block" }, 1000);
                 clearInterval(countTimeInterval);
             }
+
         }
     })
 }
