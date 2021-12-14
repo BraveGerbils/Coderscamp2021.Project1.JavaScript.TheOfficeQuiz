@@ -5,8 +5,10 @@ import { elementFrom } from "../../shared/dom";
 
 const templateHtml = ({data}) => {
     return `
+    <div>
+    <button class="clock-start" id="start">${data.buttonStart}</button>
     <div class="clock">
-    <button class="clock-start" id="start-BTN">${data.buttonStart}</button>
+    
     <button class="clock-end" title="restart time">${data.buttonEnd}</button>
     <div class="clock-display">
         <div class="clock-displayWrap">
@@ -19,145 +21,117 @@ const templateHtml = ({data}) => {
         </div>
     </div>
     <div class="clock-btnWrap">
-        <button class="clock-btn clock-plusMin">${data.plusBtn}</button>
+        <button class="clock-btn clock-addMin">${data.plusBtn}</button>
         <button class="clock-btn clock-remMin">${data.minBtn}</button>
-        <button class="clock-btn clock-plusSec">${data.plusBtn}</button>
+        <button class="clock-btn clock-addSec">${data.plusBtn}</button>
         <button class="clock-btn clock-remSec" >${data.minBtn}</button>
     </div>
     <div class="clock-bckg"></div>
+</div>
 </div>`
 
 }
 
 
-export const TimerView = ({renderOn, data}) => {
-    const element = elementFrom({html: templateHtml({data})});
-    console.log(element)
-
-    document.querySelector(renderOn).appendChild(element);
-    console.log(renderOn)
-
-    //display elements
-    const displayMin = document.querySelector('.clock-displayMin');
-    const displaySec = document.querySelector('.clock-displaySec');
+    export const TimerView = ({renderOn, data}) => {
+        const element = elementFrom({html: templateHtml({data})});
+        console.log(element)
     
-    //background-change element
-    const clockBckg = document.querySelector('.clock-bckg');
-
-    //buttons queryselectors
-    const plusMin = document.querySelector('.clock-plusMin');
-    const remMin = document.querySelector('.clock-remMin');
-    const plusSec = document.querySelector('.clock-plusSec');
-    const remSec = document.querySelector('.clock-remSec');
-    const start = document.querySelector('.clock-start');
-    const end = document.querySelector('.clock-end');
-    const buttons = document.querySelector('.clock-btnWrap');
-
-    //adding function makeNumber for buttons
-    plusMin.addEventListener('click', makeNumber);
-    plusSec.addEventListener('click', makeNumber);
-    remMin.addEventListener('click', makeNumber);
-    remSec.addEventListener('click', makeNumber);
-    start.addEventListener('click', makeNumber);
-    end.addEventListener('click', makeNumber);
-
-    // Adding/Removing/Displaying/Ending function
-    let secundeArr = [];
-    let minuteArr = [];
-    let minute = minuteArr.length;
-    let secunde = secundeArr.length;
-    let i = 0;
-
-    function makeNumber(e) {
-
-        function adding(i, array, variable, display, number) {
-            i++;
-            array.push(i);
-            variable = array.length;
-            display.innerText = variable.toString().padStart(2, '0');
-            if (variable >= number) {
-                display.innerText = "00";
-                array.length = 0;
+        document.querySelector(renderOn).appendChild(element);
+        console.log(renderOn)
+    
+        //display elements
+        const displayMin = document.querySelector('.clock-displayMin');
+        const displaySec = document.querySelector('.clock-displaySec');
+        const clockBckg = document.querySelector('.clock-bckg');
+        const buttons = document.querySelectorAll('.clock-btnWrap');
+    
+        let minutes = 0;
+        let secundes = 0;
+    
+        const plusMin = document.querySelector('.clock-addMin').addEventListener('click', function() {
+            minutes++;
+            displayMin.innerText = minutes.toString().padStart(2, '0');
+            if (minutes >= 100) {
+                minutes = 0;
+                displayMin.innerText = minutes.toString().padStart(2, '0');
             }
-        }
-        function removing(i, array, variable, display, a, b) {
-            if (display.innerText == "00") {
-                array.length = a;
+        });;
+    
+        const remMin = document.querySelector('.clock-remMin').addEventListener('click', function() {
+            minutes--;
+            displayMin.innerText = minutes.toString().padStart(2, '0');
+            if(minutes < 0){
+                minutes = 99;
+                displayMin.innerText = minutes.toString().padStart(2, '0');
             }
-            if (variable >= b) {
-                display.innerText = variable.toString().padStart(2, '0');
+        });;
+        const plusSec = document.querySelector('.clock-addSec').addEventListener('click', function() {
+            secundes++;
+            displaySec.innerText = secundes.toString().padStart(2, '0');
+            if (secundes >= 60) {
+                secundes = 0;
+                displaySec.innerText = secundes.toString().padStart(2, '0');
             }
-            i--
-            array.pop()
-            variable = array.length;
-            display.innerText = variable.toString().padStart(2, '0');
-        }
-        let classes = e.target.className;
-
-       //buttons and their behaviors
-        if (classes == "clock-btn clock-plusMin") {
-            adding(i, minuteArr, minute, displayMin, 100);
-        }else if (classes == 'clock-btn clock-remMin') {
-            removing(i, minuteArr, minute, displayMin, 100, 99)
-        }else if (classes == 'clock-btn clock-plusSec') {
-            adding(i, secundeArr, secunde, displaySec, 60);
-        }else if (classes == 'clock-btn clock-remSec') {
-            removing(i, secundeArr, secunde, displaySec, 60, 99)
-        }else if (classes == "clock-end") {
+        });;
+    
+        const remSec = document.querySelector('.clock-remSec').addEventListener('click', function() {
+            secundes--;
+            displaySec.innerText = secundes.toString().padStart(2, '0');
+            if(secundes < 0) {
+                secundes = 59;
+                displaySec.innerText = secundes.toString().padStart(2, '0');
+            }
+        });;
+        
+        const end = document.querySelector('.clock-end').addEventListener('click', function() {
             history.go();
-        }
+        });;
 
-        //Start counting down and change background
-        else if (classes == 'clock-start') {
-            start.style.visibility = "hidden"
-            buttons.style.visibility = "hidden";
-            let totalTime = secundeArr.length + (minuteArr.length * 60);
-            let countTime = secundeArr.length + (minuteArr.length * 60);
+
+        const start = document.querySelector('.clock-start').addEventListener('click', function(e) {
+            e.target.style.visibility = "hidden";
+            buttons.forEach(button=> {button.style.visibility = "hidden"});
+            
+            let totalTime = secundes + (minutes * 60);
+            let countTime = secundes + (minutes * 60);
             let currentTime = 0;
-            let interval = setInterval(timeUpdate, 1000)
+            let displayInterval= setInterval(displayUpdate, 1000);
+            console.log("minutes " + minutes + " a to secundes " + secundes)
 
-            function timeUpdate() {
+            function displayUpdate() {
                 if (totalTime > 0) {
                     totalTime--;
-                    secundeArr.pop();
-                    displaySec.innerText = secundeArr.length.toString().padStart(2, '0');
+                    secundes--
+                    displaySec.innerText = secundes.toString().padStart(2, '0');
                     currentTime++;
                     let progressTime = (currentTime * 100) / countTime;
                     let progressPerc = `${progressTime}%`
                     clockBckg.style.height = progressPerc;
+                    console.log(totalTime)
                 }
 
-                if (displayMin.innerText != "00" && displaySec.innerText == "00") {
-                    secundeArr.length = 61;
-                    secundeArr.pop();
+                if (minutes != 0 && secundes == 0) {
+                    secundes = 60;
                 }
 
-                if (displaySec.innerText == "59") {
-                    let minutes = displayMin.innerText;
-                    let substraction = Number(minutes) - 1;
-                    displayMin.innerText = substraction.toString().padStart(2, '0');
+                if (secundes == 59) {
+                    minutes--
+                    displayMin.innerText = minutes.toString().padStart(2, '0');
                 }
 
                 if (totalTime == 0) {
                     setTimeout(() => { 
                         clockBckg.style.height = "0%"; 
-                        start.style.visibility = "visible"
-                        buttons.style.visibility = "visible" 
-                    }, 2000);
-                    totalTime == 0
-                    clockBckg.style.height = "100%";
-                    clearInterval(interval);
-                    console.log("Czas minął"); 
+                        e.target.style.visibility = "visible"
+                        buttons.forEach(button=> {button.style.visibility = "visible"}) }, 2000);
+                        totalTime == 0
+                        clockBckg.style.height = "100%";
+                        clearInterval(displayInterval);
+                        console.log("Czas minął"); 
                 }
-                if (totalTime == 0) {    
-                    
-                }
-                    
-
-                    
-                
-            }
+             
+            
         }
+    });
     }
-}
-

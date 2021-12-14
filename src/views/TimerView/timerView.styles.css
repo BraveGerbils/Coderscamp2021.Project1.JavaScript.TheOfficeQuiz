@@ -101,8 +101,8 @@ z-index: 1000;
 }
 
 .clock-start {
-    font-family: 'Russo One', sans-serif;
-    width: 100%;
+    font-family: 'Courier New';
+    width: 150px;
     cursor: pointer;
     outline: none;
     background: transparent;
