@@ -101,6 +101,9 @@
     display: flex;
 }
 
+.result-quote {
+    margin-top:24px;
+}
 
 @media screen and (max-width: 415px) { 
     .result {
