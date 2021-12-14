@@ -128,11 +128,7 @@ const templateHtml = ({data}) => {
                         totalTime == 0
                         clockBckg.style.height = "100%";
                         clearInterval(displayInterval);
-                        ResultView()
                 }
-              
-             
-            
         }
     });
     }
