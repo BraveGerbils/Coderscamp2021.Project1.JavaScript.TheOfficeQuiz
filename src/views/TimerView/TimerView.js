@@ -88,7 +88,6 @@ const templateHtml = ({data}) => {
             history.go();
         });;
 
-
         const start = document.querySelector('.clock-start').addEventListener('click', function(e) {
             e.target.style.visibility = "hidden";
             buttons.forEach(button=> {button.style.visibility = "hidden"});
@@ -130,8 +129,11 @@ const templateHtml = ({data}) => {
                         clearInterval(displayInterval);
                         console.log("Czas minął"); 
                 }
+              
              
             
         }
     });
     }
+
+    

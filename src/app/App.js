@@ -1,5 +1,6 @@
 import { NavigationView } from "../views/NavigationView/NavigationView";
 import {TimerView} from "../views/TimerView/TimerView.js";
+import { ResultView } from "../views/ResultView/ResultView";
 
 export const App = ({renderOn}) => {
 
@@ -23,6 +24,11 @@ export const App = ({renderOn}) => {
     }
 
     TimerView({renderOn: renderOn, data: clockData});
+    
+    const resultData = {
+       
+    }
 
+    ResultView({renderOn: renderOn, data: resultData});
 
 }
