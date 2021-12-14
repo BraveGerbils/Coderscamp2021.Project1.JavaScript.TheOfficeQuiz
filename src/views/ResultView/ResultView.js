@@ -46,7 +46,7 @@ export const ResultView = ({ renderOn, data }) => {
                                 "That was first class work.", "You must have been practicing.", 
                                 "Good remembering!", "Marvelous!"];
     const resultArrayMid  = ["You managed somehow.", "If I were you, I wouldn't be happy.","A result like a high school student.",
-                               "Maybe check the office again.", "I have an idea for you. Play again." ] ;             
+                               "Maybe check The Office again.", "I have an idea for you. Play again." ] ;             
     const resultArrayBad = ["It was amateurish.", "Try harder.", "Did you really watch The Office?", 
                             "That was easy to predict.", "Really?", "It was a failure." ]
 
@@ -70,7 +70,7 @@ export const ResultView = ({ renderOn, data }) => {
             console.log(totalTime);
             
             if (totalTime <= 0) {
-                let result = 29;
+                let result = 31;
                 const resultTime = document.getElementById('result-time');
                 resultTime.innerHTML = "minutes " + minutes + ", secundes " + secundes +".";
                 const resultPoints = document.getElementById('result-points');

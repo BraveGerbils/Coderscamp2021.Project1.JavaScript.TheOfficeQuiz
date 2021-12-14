@@ -92,6 +92,7 @@ const templateHtml = ({data}) => {
         const start = document.querySelector('.clock-start').addEventListener('click', function(e) {
             e.target.style.visibility = "hidden";
             buttons.forEach(button=> {button.style.visibility = "hidden"});
+            console.log("to secundes " + secundes)
             
             let totalTime = secundes + (minutes * 60);
             let countTime = secundes + (minutes * 60);
@@ -100,6 +101,15 @@ const templateHtml = ({data}) => {
             let displayInterval= setInterval(displayUpdate, 1000);
 
             function displayUpdate() {
+                if (minutes > 0 && secundes == 0) {
+                    minutes--
+                    displayMin.innerText = minutes.toString().padStart(2, '0');
+                   console.log("ttttaaa")
+                   secundes= 61;
+                   displaySec.innerText = secundes.toString().padStart(2, '0');
+                    secundes--
+                   
+                }
 
                 if (totalTime > 0) {
                     totalTime--;
@@ -111,15 +121,6 @@ const templateHtml = ({data}) => {
                     clockBckg.style.height = progressPerc;
                 }
 
-                if (minutes != 0 && secundes == 0) {
-                    secundes = 60;
-                }
-
-                if (secundes == 59) {
-                    minutes--
-                    displayMin.innerText = minutes.toString().padStart(2, '0');
-                }
-
                 if (totalTime == 0) {
                     setTimeout(() => { 
                         clockBckg.style.height = "0%"; 
@@ -129,6 +130,7 @@ const templateHtml = ({data}) => {
                         clockBckg.style.height = "100%";
                         clearInterval(displayInterval);
                 }
+             
         }
     });
     }
