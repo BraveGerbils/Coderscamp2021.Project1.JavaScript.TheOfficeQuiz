@@ -1,0 +1,125 @@
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+    
+    body{
+        background-color: #000;
+    }
+    
+    .whole-quiz {
+        display: grid;
+        grid-template-columns: 0.4fr 0.6fr;
+    }
+    
+    .michael{
+        width: 100%;
+        height: auto;
+    }
+    
+    /* Good Questions */
+    
+    .questions-view{
+       background-color: transparent;
+       margin: 0px 100px;
+       width: auto;
+    }
+    
+    .radius{
+        border-radius: 5px;
+    }
+    
+    .categories {
+        position: relative;
+        height: 50px;
+        font-size: 20px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /*
+    .underline{
+        position: absolute;
+        height: 4px;
+        width: 0;
+        left: 0;
+        background-color: #108ec5;
+        bottom: 8px;
+        transition: 0.5s;
+        border-radius: 5px;
+    }
+    */
+    
+    .categories a{
+        font-weight: bold;
+        margin: 0px 40px;
+        padding: 10px;
+        text-decoration: none;
+        color: gray;
+        transition: 0.2s;
+    }
+    
+    .categories a:hover{
+        color: #108ec5;
+    }
+    
+    .questions{
+        height: auto;
+        margin-top: 50px;
+        background-color: white;
+    }
+    
+    .questions p{
+        padding: 10px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .answers-grid{
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;    
+    }
+    
+    .answers-question{ 
+        background-color: white;
+        text-align: center;
+        width: 90%;
+        font-size: 25px;
+        padding: 10px;
+        margin: 0px auto 25px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+    
+    .answers-question:hover{
+        background-color: #108ec5;
+        color: white;
+    } 
+    
+    .answers-question-another{
+        pointer-events: none !important;
+    }
+    
+    .answers-question-another:hover{
+        pointer-events: none !important
+    }
+    
+    .answer-good{
+        background-color: green !important ;
+        color: black !important;
+        cursor: auto;
+    }
+    
+    .answer-bad{
+        background-color: tomato !important;
+        color: black !important;
+        cursor: auto;
+    }

@@ -2,6 +2,7 @@ import style from "./resultView.styles.css";
 import { TimerView } from "../TimerView/TimerView";
 
 import { elementFrom } from "../../shared/dom";
+import { GoodAnswerView } from "../GoodAnswerView/GoodAnswerView";
 
 
 
@@ -15,11 +16,11 @@ const templateHtml = ({ data }) => {
         <div class="result-wrp">
             <img src="result-dwight.b97e6149.png" class="result-dwightImg">
             <div class="result-paragraphs">
-                <p class="result-parag">Your playing time is: <span class="result-span" id="result-time">${data.time}</span></p>
+                <p class="result-parag">Your playing time is: <span class="result-span" id="result-time"></span></p>
                 <p class="result-parag">In the chosen time you have got 
-                <span class="result-span" id="result-points">${data.points}</span> 
-                correct answers to 
-                <span class="result-span id="result-questions"">${data.questions}</span> 
+                <span class="result-span" id="result-points"></span> 
+                correct answers for 
+                <span class="result-span" id="result-questions"></span> 
                 questions.
                 </p>
             </div>
@@ -37,51 +38,75 @@ const templateHtml = ({ data }) => {
 </div>`
 }
 
-
 export const ResultView = ({ renderOn, data }) => {
     const element = elementFrom({ html: templateHtml({ data }) });
-    //console.log(element);
-
     document.querySelector(renderOn).appendChild(element);
-    //console.log(renderOn);
 
-
+    //arrays with sentence describing user score
     const resultArrayPerfect = ["Now that’s what I call a finejob.", "Couldn’t have done it better myself.", 
-                                "That was first class work.", "You must have been practicing.", 
-                                "Good remembering!", "Marvelous!"];
-    const resultArrayMid  = ["You managed somehow.", "If I were you, I wouldn't be happy.","A result like a high school student.",
-                               "Maybe check The Office again.", "I have an idea for you. Play again." ] ;             
+        "That was first class work.", "You must have been practicing.", "Good remembering!", "Marvelous!"];
+    const resultArrayMid  = ["You managed somehow.", "If I were you, I wouldn't be happy.",
+        "A result like a high school student.","Maybe check The Office again.", "I have an idea for you: play again." ] ;             
     const resultArrayBad = ["It was amateurish.", "Try harder.", "Did you really watch The Office?", 
-                            "That was easy to predict.", "Really?", "It was a failure." ]
+        "That was easy to predict.", "Really?", "It was a failure." ]
 
-    
+    //button "X" - turn off result element
     const escapeBtn = document.getElementById('result-escBtn').addEventListener('click', function () {
         element.style.display = "none";
         history.go();
     });
 
+    let hit;
+    let questions;
+    let userScore; 
 
+    //start element 
     const start = document.getElementById('start').addEventListener('click', function () {
+        let countTimeInterval = setInterval(showResult, 1000);
+        
         const minutes = document.getElementById('clock-displayMin').innerText;
         const secundes = document.getElementById('clock-displaySec').innerText;
         let totalTime = Number(minutes * 60) + Number(secundes);
-        let countTimeInterval = setInterval(countTime, 1000);
+    
         if (secundes == 0 && totalTime == 0) {
             clearInterval(countTimeInterval);
         }
 
-        function countTime() {
+        function showResult() {
             totalTime--;
-            
+            const resultPoints = document.getElementById('result-points');
+            const resultQuestions = document.getElementById('result-questions');
+            const getGoodAns = sessionStorage.getItem("goodAnswersKey");
+            const getBadAns = sessionStorage.getItem("badAnswersKey");
+
             if (totalTime <= 0) {
-                let userScore = 71;
+                const goodAnsArr = [];
+                const badAnsArr = [];
+        
+                if(badAnsArr.length == 0 && goodAnsArr.length == 0) {
+                    resultPoints.innerHTML = 0; 
+                    resultQuestions.innerHTML = 0;
+                } 
+
+                    goodAnsArr.push(getGoodAns)
+                    let hited = goodAnsArr.toString().split(',')
+                    hit = hited.reduce(function(a, b) {return a + b;}).length;
+                    resultPoints.innerHTML = hit;
+
+                    badAnsArr.push(getBadAns)
+                    let missed = badAnsArr.toString().split(',')
+                    let miss = missed.reduce(function(a, b) {return a + b;});
+                    questions = hit + miss.length
+                    resultQuestions.innerHTML = questions;
+        
                 const resultTime = document.getElementById('result-time');
                 resultTime.innerHTML = "minutes " + minutes + ", secundes " + secundes +".";
-                const resultPoints = document.getElementById('result-points');
-                const resultQuestions = document.getElementById('result-questions');
-                const resultQuotes = document.getElementById('result-quote');
-                  
+                
                 //Michael says - comment to user score
+                const resultQuotes = document.getElementById('result-quote');
+                userScore = (hit * 100)/questions;
+                console.log("to userscore " + userScore + "%")
+
                 if(userScore<=30) {
                     let random = Math.floor(Math.random() * resultArrayBad.length);
                     resultQuotes.innerHTML = resultArrayBad[random]; 
@@ -92,14 +117,17 @@ export const ResultView = ({ renderOn, data }) => {
                     let random = Math.floor(Math.random() * resultArrayPerfect.length)
                     resultQuotes.innerHTML = resultArrayPerfect[random];
                 }
-            
                 setTimeout(() => { element.style.display = "block" }, 1000);
                 clearInterval(countTimeInterval);
             }
         }
+     
     })
-
-    const saveResult = document.getElementById('result-save'); 
+    const saveResult = document.getElementById('result-save').addEventListener('click', function() {
+      sessionStorage.setItem("questions", questions);
+      sessionStorage.setItem("hited", hit);
+      sessionStorage.setItem("userScore", userScore);
+    })
 
 }
 

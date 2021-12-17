@@ -35,10 +35,8 @@ const templateHtml = ({data}) => {
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});
-        console.log(element)
     
         document.querySelector(renderOn).appendChild(element);
-        console.log(renderOn)
     
         //display elements
         const displayMin = document.querySelector('.clock-displayMin');
@@ -48,7 +46,6 @@ const templateHtml = ({data}) => {
     
         let minutes = 0;
         let secundes = 0;
-        let total = 0;
     
         const plusMin = document.querySelector('.clock-addMin').addEventListener('click', function() {
             minutes++;
