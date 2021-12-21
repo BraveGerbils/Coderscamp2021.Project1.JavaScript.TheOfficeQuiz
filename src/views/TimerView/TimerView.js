@@ -35,7 +35,6 @@ const templateHtml = ({data}) => {
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});
-    
         document.querySelector(renderOn).appendChild(element);
     
         //display elements

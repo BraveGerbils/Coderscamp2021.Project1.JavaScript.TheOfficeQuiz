@@ -3,6 +3,7 @@ import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
 import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
 
+
 export const App = ({renderOn}) => {
         
  
@@ -38,4 +39,7 @@ export const App = ({renderOn}) => {
     }
 
     ResultView({renderOn: renderOn, data: resultData});
+
+
+
 }
