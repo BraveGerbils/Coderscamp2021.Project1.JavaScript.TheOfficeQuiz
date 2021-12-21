@@ -31,117 +31,30 @@ const templateHtml = ({data}) => {
 }
 
 
-
-// Good answer //
-
 export const goodAnswer = ({renderOn, data}) => {
-
     const element = elementFrom({html: templateHtml({data})});
     console.log(element)
 
     document.querySelector(renderOn).appendChild(element);
     console.log(renderOn)
     
-    const Answer1 = document.querySelector('.answer1')
-    const Answer2 = document.querySelector('.answer2')
-    const Answer3 = document.querySelector('.answer3')
-    const Answer4 = document.querySelector('.answer4')
-
-    let answer = 'answer 1'
-
-    const nextOne = () => {
-        console.log('next')
-        Answer1.classList.remove("answers-question-another")
-        Answer2.classList.remove("answers-question-another")
-        Answer3.classList.remove("answers-question-another")
-        Answer4.classList.remove("answers-question-another") 
-        Answer1.classList.remove("answer-good")
-        Answer2.classList.remove("answer-good")
-        Answer3.classList.remove("answer-good")
-        Answer4.classList.remove("answer-good")
-        Answer1.classList.remove("answer-bad")
-        Answer2.classList.remove("answer-bad")
-        Answer3.classList.remove("answer-bad")
-        Answer4.classList.remove("answer-bad")
-    }    
-
-    const givenAnswer1 = () =>{
-        let choosenAnswer1 = document.querySelector('.answer1').textContent
-          
-        if(answer === choosenAnswer1){
-            console.log('correct')
-            Answer1.classList.add("answer-good")  
-        }
-        else{
-            console.log('wrong')
-            Answer1.classList.add("answer-bad")
-        }  
-            Answer2.classList.add("answers-question-another")
-            Answer3.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-
-    const givenAnswer2 = () =>{
-        let choosenAnswer2 = document.querySelector('.answer2').textContent
-        
-        if(answer === choosenAnswer2){
-            console.log('correct')
-            Answer2.classList.add("answer-good")
+    const answersNode = document.querySelectorAll('.answers-grid button')
+    let answers = Array.from(answersNode)
+    let correctAnswer = 'answer 1' //temporarily 
     
+    const nextOne = () => {
+        answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
+    }    
+     
+    answers.forEach(answer => answer.addEventListener('click', () => {
+        if(answer.textContent === correctAnswer){
+            answer.classList.add("answer-good")
         }
         else{
-            console.log('wrong')
-            Answer2.classList.add("answer-bad")
-        }  
-            Answer3.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            Answer1.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-
-    }
-
-    const givenAnswer3 = () =>{
-        let choosenAnswer3 = document.querySelector('.answer3').textContent
-        
-        if(answer === choosenAnswer3){
-            console.log('correct')
-            Answer3.classList.add("answer-good")
+            answer.classList.add("answer-bad")
         }
-        else{
-            console.log('wrong')
-            Answer3.classList.add("answer-bad")
-        }  
-            Answer1.classList.add("answers-question-another")
-            Answer2.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-
-    const givenAnswer4 = () =>{
-        let choosenAnswer4 = document.querySelector('.answer4').textContent
-        
-        if(answer === choosenAnswer4){
-            console.log('correct')
-            Answer4.classList.add("answer-good")
-        }
-        else{
-            console.log('wrong')
-            Answer4.classList.add("answer-bad")
-        }  
-        
-            Answer4.classList.add("answers-question-another")
-            Answer3.classList.add("answers-question-another")
-            Answer1.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-
-    Answer1.addEventListener('click', givenAnswer1)
-    Answer2.addEventListener('click', givenAnswer2)
-    Answer3.addEventListener('click', givenAnswer3)
-    Answer4.addEventListener('click', givenAnswer4)
-
-        
-
+        answers.forEach(answer => answer.classList.add("answers-question-another"))
+        setTimeout(function() { nextOne(); }, 500)
+    }))     
 }
-//End of good answer //
+
