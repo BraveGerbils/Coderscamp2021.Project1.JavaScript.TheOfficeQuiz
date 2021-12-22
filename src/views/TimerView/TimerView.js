@@ -2,6 +2,7 @@
 
 import style from "./timerView.styles.css";
 import { ResultView } from "../ResultView/ResultView";
+import { GoodAnswerView } from "../GoodAnswerView/GoodAnswerView";
 import { elementFrom } from "../../shared/dom";
 
 const templateHtml = ({data}) => {

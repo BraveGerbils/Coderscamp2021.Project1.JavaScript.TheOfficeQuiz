@@ -1,4 +1,5 @@
 import style from "./goodAnswer.styles.css"; 
+
 import { elementFrom } from "../../shared/dom";
 
 
@@ -45,7 +46,19 @@ export const GoodAnswerView = ({renderOn, data}) => {
     const Answer4 = document.querySelector('.answer4')
 
     let goodAnswers = 0;
-    let badAnswers= 0;
+    let badAnswers = 0;
+    
+    //cleaning variables for localStorage
+    let start = document.querySelector('.clock-start')
+    start.addEventListener('click', function(e) {
+        if(e.target.id = "start") { 
+            localStorage.removeItem("goodAnswersKey")
+            localStorage.removeItem("badAnswersKey")
+            goodAnswers = 0;
+            badAnswers = 0;
+        }
+    })
+
     let answer = 'answer 1'
     
     const nextOne = () => {
@@ -70,13 +83,13 @@ export const GoodAnswerView = ({renderOn, data}) => {
             Answer1.classList.add("answer-good")  
         
             goodAnswers++
-            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+            localStorage.setItem('goodAnswersKey', goodAnswers ) 
 
         }
         else{
             Answer1.classList.add("answer-bad")
             badAnswers++;
-            sessionStorage.setItem('badAnswersKey', badAnswers ) 
+            localStorage.setItem('badAnswersKey', badAnswers ) 
             
         }  
             Answer2.classList.add("answers-question-another")
@@ -91,13 +104,13 @@ export const GoodAnswerView = ({renderOn, data}) => {
         if(answer === choosenAnswer2){
             Answer2.classList.add("answer-good")
             goodAnswers++
-            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+            localStorage.setItem('goodAnswersKey', goodAnswers ) 
     
         }
         else{
             Answer2.classList.add("answer-bad");
             badAnswers++
-            sessionStorage.setItem('badAnswersKey', badAnswers ) 
+            localStorage.setItem('badAnswersKey', badAnswers ) 
         }  
             Answer3.classList.add("answers-question-another")
             Answer4.classList.add("answers-question-another")
@@ -112,12 +125,12 @@ export const GoodAnswerView = ({renderOn, data}) => {
         if(answer === choosenAnswer3){
             Answer3.classList.add("answer-good")
             goodAnswers++
-            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+            localStorage.setItem('goodAnswersKey', goodAnswers ) 
         }
         else{
             Answer3.classList.add("answer-bad");
             badAnswers++
-            sessionStorage.setItem('badAnswersKey', badAnswers ) 
+            localStorage.setItem('badAnswersKey', badAnswers ) 
         }  
             Answer1.classList.add("answers-question-another")
             Answer2.classList.add("answers-question-another")
@@ -131,12 +144,12 @@ export const GoodAnswerView = ({renderOn, data}) => {
         if(answer === choosenAnswer4){
             Answer4.classList.add("answer-good")
             goodAnswers++
-            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+            localStorage.setItem('goodAnswersKey', goodAnswers ) 
         }
         else{
             Answer4.classList.add("answer-bad")
             badAnswers++
-            sessionStorage.setItem('badAnswersKey', badAnswers ) 
+            localStorage.setItem('badAnswersKey', badAnswers ) 
         }  
             Answer4.classList.add("answers-question-another")
             Answer3.classList.add("answers-question-another")
