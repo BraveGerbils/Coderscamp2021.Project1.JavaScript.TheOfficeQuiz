@@ -3,9 +3,13 @@ import { elementFrom } from "../../shared/dom";
 
 const templateHtml = ({data}) => {
     return `<nav>
-                <a class="link">${data.link1}</a>
-                <a class="link">${data.link2}</a>
-                <a class="link">${data.link3}</a>
+                <ul>
+                    <p>${data.question1}</p>
+                    <li>${data.answer1}</li>
+                    <li>${data.answer2}</li>
+                    <li>${data.answer3}</li>
+                    <li>${data.answer4}</li>
+                </ul>
                 <button id="nav-button">BUTTON</button>
             </nav>`
 }
