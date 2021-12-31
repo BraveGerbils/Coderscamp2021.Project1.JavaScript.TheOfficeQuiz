@@ -1,5 +1,8 @@
-import { fetchCharacters} from "./officeApi";
-import { goodAnswer} from "../views/goodAnswer/goodAnswer";
+
+import {TimerView} from "../views/TimerView/TimerView.js";
+import { ResultView } from "../views/ResultView/ResultView";
+import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
+
 
 export const App = ({renderOn}) => {
         
@@ -14,9 +17,29 @@ export const App = ({renderOn}) => {
         buttonAnswer3: "answer 3",
         buttonAnswer4: "answer 4",
     }
-
    
-  
-    goodAnswer({renderOn: renderOn, data:questionsData});
+    GoodAnswerView({renderOn: renderOn, data:questionsData});
+
+
+    const clockData = {
+        buttonStart: "START",
+        buttonEnd: '🦄',
+        displayMin: "00",
+        displaySec:"00",
+        paragraphMin: "minutes",
+        paragraphSec: "secundes",
+        plusBtn: "+",
+        minBtn: "-",
+    }
+
+    TimerView({renderOn: renderOn, data: clockData});
+    
+    const resultData = {
+       
+    }
+
+    ResultView({renderOn: renderOn, data: resultData});
+
+
 
 }
