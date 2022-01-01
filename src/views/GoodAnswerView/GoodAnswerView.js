@@ -1,34 +1,70 @@
 import style from "./goodAnswer.styles.css"; 
 import { elementFrom } from "../../shared/dom";
-
+import TimerView  from "../TimerView/TimerView";
 
 const templateHtml = ({data}) => {
     return ` 
-        <div class="questions-view">
-            <nav class="categories radius">
-                <a class="categories-first" href="">${data.buttonCategory1}</a>
-                <a class="categories-second" href="">${data.buttonCategory2}</a>
-                <a class="categories-third" href="">${data.buttonCategory3}</a>
-            </nav>
-            <div class="questionAndAnswers">
-                <div class="questionAndAnswers-left">
-                    <div class="questions radius">
-                        <p>${data.questionWindow}</p>
-                    </div>
-                    <div class="answers">
-                        <div class="answers-grid">
-                            <button class="answers-question radius">${data.buttonAnswer1}</button>
-                            <button class="answers-question radius">${data.buttonAnswer2}</button>
-                            <button class="answers-question radius">${data.buttonAnswer3}</button>
-                            <button class="answers-question radius">${data.buttonAnswer4}</button>
-                        </div>
+        <div id="office-app" class="office-app">
+                <div class="office-header">
+                    <div class="office-logo">
                     </div>
                 </div>
-                <div class="questionAndAnswers-right">
-                    <div class="question-image"></div>
-                </div> 
-            </div>
-        </div>`
+                <div class="office-content">
+                    <div class="office-bar-left"></div>
+                    <div class="office-main-body">
+                        <div class="office-gamemode-bar-quiz">
+                            <button class="office-bar-mode">Character</button>
+                            <button class="office-bar-mode">Quote</button>
+                            <button class="office-bar-mode">Additional</button>
+                        </div>
+                        <div class="office-gamemode-body">
+                            <div class="office-gamemode-content">
+                                <div class="office-gamemode-body-content-quiz">
+                                    <div class="office-gamemode-body-text-quiz">
+                                        <p class="office-gamemode-body-text-quiz-question">${data.questionWindow}</p>
+                                    </div>
+                                </div>
+                                <div class="office-gamemode-character-template">
+                                    <div class="office-gamemode-character-template-img"></div>
+                                </div>
+                            </div>
+                            <div class="office-gamemode-buttons-quiz">
+                                <div class="answers">
+                                    <div class="answers-grid">
+                                        <button class="answers-question radius">${data.buttonAnswer1}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer2}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer3}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer4}</button>
+                                    </div>
+                                </div>
+                                <div class= "clock-position">
+                                    <div class="clock">
+                                        <button class="clock-end" title="restart time">${data.buttonEnd}</button>
+                                        <div class="clock-display">
+                                            <div class="clock-displayWrap">
+                                                <div class="clock-displayMin" id="clock-displayMin">${data.displayMin}</div>
+                                                <div class="clock-displaySec" id="clock-displaySec">${data.displaySec}</div>
+                                            </div>
+                                            <div class="clock-displayWrap">
+                                                <p class="clock-paragraphMin clock-paragraph">${data.paragraphMin}</p>
+                                                <p class="clock-paragraphSec clock-paragraph">${data.paragraphSec}</p>
+                                            </div>
+                                        </div>
+                                        <div class="clock-btnWrap">
+                                            <button class="clock-btn clock-addMin">${data.plusBtn}</button>
+                                            <button class="clock-btn clock-remMin">${data.minBtn}</button>
+                                            <button class="clock-btn clock-addSec">${data.plusBtn}</button>
+                                            <button class="clock-btn clock-remSec" >${data.minBtn}</button>
+                                        </div>
+                                    <div class="clock-bckg"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="office-bar-right"></div>
+                </div>
+            </div>`
 }
 
 
@@ -63,4 +99,6 @@ export const GoodAnswerView = ({renderOn, data}) => {
         setTimeout(function() { nextOne(); }, 500)
     }))     
 }
+
+
 
