@@ -1,4 +1,5 @@
 import style from "./goodAnswer.styles.css"; 
+
 import { elementFrom } from "../../shared/dom";
 import TimerView  from "../TimerView/TimerView";
 
@@ -68,8 +69,6 @@ const templateHtml = ({data}) => {
 }
 
 
-// Good answer //
-
 export const GoodAnswerView = ({renderOn, data}) => {
     const element = elementFrom({html: templateHtml({data})});
     document.querySelector(renderOn).appendChild(element);
@@ -78,8 +77,8 @@ export const GoodAnswerView = ({renderOn, data}) => {
     let answers = Array.from(answersNode)
     let correctAnswer = 'answer 1' //temporarily 
     let goodAnswers = 0;
-    let badAnswers= 0;
-
+    let badAnswers = 0;
+    
     const nextOne = () => {
         answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
     }    
@@ -99,6 +98,7 @@ export const GoodAnswerView = ({renderOn, data}) => {
         setTimeout(function() { nextOne(); }, 500)
     }))     
 }
+
 
 
 

@@ -2,11 +2,24 @@
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
 import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
+import { ResultSave } from "../views/ResultView/ResultSave";
 
 
 export const App = ({renderOn}) => {
         
- 
+    const clockData = {
+        buttonStart: "START",
+        buttonEnd: '🦄',
+        displayMin: "00",
+        displaySec:"00",
+        paragraphMin: "minutes",
+        paragraphSec: "secundes",
+        plusBtn: "+",
+        minBtn: "-",
+    }
+
+    TimerView({renderOn: renderOn, data: clockData});
+
     const questionsData = {
         buttonCategory1: "category 1",
         buttonCategory2: "category 2",
@@ -21,25 +34,18 @@ export const App = ({renderOn}) => {
     GoodAnswerView({renderOn: renderOn, data:questionsData});
 
 
-    const clockData = {
-        buttonStart: "START",
-        buttonEnd: '🦄',
-        displayMin: "00",
-        displaySec:"00",
-        paragraphMin: "minutes",
-        paragraphSec: "secundes",
-        plusBtn: "+",
-        minBtn: "-",
-    }
-
-    TimerView({renderOn: renderOn, data: clockData});
+   
     
     const resultData = {
        
     }
 
     ResultView({renderOn: renderOn, data: resultData});
+    
+    const saveData = {
+       
+    }
 
-
+    ResultSave({renderOn: renderOn, data: saveData});
 
 }
