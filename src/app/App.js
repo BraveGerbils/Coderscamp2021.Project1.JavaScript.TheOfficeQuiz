@@ -1,8 +1,11 @@
 
+import { NavigationView } from "../views/NavigationView/NavigationView";
+import { fetchCharacters, fetchQuotes, fetchEpisodes} from "./officeApi";
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
 import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
 import { ResultSave } from "../views/ResultView/ResultSave";
+
 
 
 export const App = ({renderOn}) => {
@@ -42,9 +45,20 @@ export const App = ({renderOn}) => {
 
     ResultView({renderOn: renderOn, data: resultData});
     
+    const urlOffice = 'https://officeapi.dev/api/characters/random';
+    const navigationData = {
+        link1: "LINK1",
+        link2: "LINK2",
+        link3: "LINK3"
+    }
+    fetchCharacters();
+    fetchQuotes();
+    fetchEpisodes();
+
     const saveData = {
        
     }
+
 
     ResultSave({renderOn: renderOn, data: saveData});
 
