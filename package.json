@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"parcel -p 8765 index.html\" \"json-server --watch ./office_json_server/db.json\"",
+    "dev": "parcel -p 8765 index.html",
     "prod": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,13 +19,10 @@
   },
   "homepage": "https://github.com/BraveGerbils/Coderscamp2021.Project1.JavaScript.TheOfficeQuiz#readme",
   "devDependencies": {
-    "json-server": "^0.17.0",
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
-    "concurrently": "^6.4.0",
     "regenerator-runtime": "^0.13.9",
     "s": "^1.0.0"
-
   }
 }
