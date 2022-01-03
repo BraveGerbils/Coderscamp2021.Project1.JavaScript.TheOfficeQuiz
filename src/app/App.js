@@ -18,7 +18,7 @@ export const App = ({renderOn}) => {
         minBtn: "-",
     }
 
-    
+    TimerView({renderOn: renderOn, data: clockData});
 
     const questionsData = {
         buttonCategory1: "category 1",
@@ -33,7 +33,7 @@ export const App = ({renderOn}) => {
    
     GoodAnswerView({renderOn: renderOn, data:questionsData});
 
-    TimerView({renderOn: renderOn, data: clockData});
+
    
     
     const resultData = {
