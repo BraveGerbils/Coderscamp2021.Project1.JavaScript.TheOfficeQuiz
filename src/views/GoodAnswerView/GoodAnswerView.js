@@ -1,166 +1,104 @@
 import style from "./goodAnswer.styles.css"; 
 
 import { elementFrom } from "../../shared/dom";
-
+import TimerView  from "../TimerView/TimerView";
 
 const templateHtml = ({data}) => {
-    return ` <div class="whole-quiz">
-        <div class="left-side">
-            <img class="michael" src="" alt="Michael">
-        </div>
-        <div class="questions-view">
-            <nav class="categories radius">
-                <a class="categories-first" href="">${data.buttonCategory1}</a>
-                <a class="categories-second" href="">${data.buttonCategory2}</a>
-                <a class="categories-third" href="">${data.buttonCategory3}</a>
-            </nav>
-
-            <div class="questions radius">
-                <p>${data.questionWindow}</p>
-            </div>
-            
-            <div class="answers">
-                <div class="answers-grid">
-                    <button class="answer1 answers-question radius">${data.buttonAnswer1}</button>
-                    <button class="answer2 answers-question radius">${data.buttonAnswer2}</button>
-                    <button class="answer3 answers-question radius">${data.buttonAnswer3}</button>
-                    <button class="answer4 answers-question radius">${data.buttonAnswer4}</button>
+    return ` 
+        <div id="office-app" class="office-app">
+                <div class="office-header">
+                    <div class="office-logo">
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div> `
+                <div class="office-content">
+                    <div class="office-bar-left"></div>
+                    <div class="office-main-body">
+                        <div class="office-gamemode-bar-quiz">
+                            <button class="office-bar-mode">Character</button>
+                            <button class="office-bar-mode">Quote</button>
+                            <button class="office-bar-mode">Additional</button>
+                        </div>
+                        <div class="office-gamemode-body">
+                            <div class="office-gamemode-content">
+                                <div class="office-gamemode-body-content-quiz">
+                                    <div class="office-gamemode-body-text-quiz">
+                                        <p class="office-gamemode-body-text-quiz-question">${data.questionWindow}</p>
+                                    </div>
+                                </div>
+                                <div class="office-gamemode-character-template">
+                                    <div class="office-gamemode-character-template-img"></div>
+                                </div>
+                            </div>
+                            <div class="office-gamemode-buttons-quiz">
+                                <div class="answers">
+                                    <div class="answers-grid">
+                                        <button class="answers-question radius">${data.buttonAnswer1}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer2}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer3}</button>
+                                        <button class="answers-question radius">${data.buttonAnswer4}</button>
+                                    </div>
+                                </div>
+                                <div class= "clock-position">
+                                    <div class="clock">
+                                        <button class="clock-end" title="restart time">${data.buttonEnd}</button>
+                                        <div class="clock-display">
+                                            <div class="clock-displayWrap">
+                                                <div class="clock-displayMin" id="clock-displayMin">${data.displayMin}</div>
+                                                <div class="clock-displaySec" id="clock-displaySec">${data.displaySec}</div>
+                                            </div>
+                                            <div class="clock-displayWrap">
+                                                <p class="clock-paragraphMin clock-paragraph">${data.paragraphMin}</p>
+                                                <p class="clock-paragraphSec clock-paragraph">${data.paragraphSec}</p>
+                                            </div>
+                                        </div>
+                                        <div class="clock-btnWrap">
+                                            <button class="clock-btn clock-addMin">${data.plusBtn}</button>
+                                            <button class="clock-btn clock-remMin">${data.minBtn}</button>
+                                            <button class="clock-btn clock-addSec">${data.plusBtn}</button>
+                                            <button class="clock-btn clock-remSec" >${data.minBtn}</button>
+                                        </div>
+                                    <div class="clock-bckg"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="office-bar-right"></div>
+                </div>
+            </div>`
 }
 
 
-
-// Good answer //
-
 export const GoodAnswerView = ({renderOn, data}) => {
-
     const element = elementFrom({html: templateHtml({data})});
     document.querySelector(renderOn).appendChild(element);
     
-    const Answer1 = document.querySelector('.answer1')
-    const Answer2 = document.querySelector('.answer2')
-    const Answer3 = document.querySelector('.answer3')
-    const Answer4 = document.querySelector('.answer4')
-
+    const answersNode = document.querySelectorAll('.answers-grid button')
+    let answers = Array.from(answersNode)
+    let correctAnswer = 'answer 1' //temporarily 
     let goodAnswers = 0;
     let badAnswers = 0;
     
-    //cleaning variables for localStorage
-    let start = document.querySelector('.clock-start')
-    start.addEventListener('click', function(e) {
-        if(e.target.id = "start") { 
-            localStorage.removeItem("goodAnswersKey")
-            localStorage.removeItem("badAnswersKey")
-            goodAnswers = 0;
-            badAnswers = 0;
-        }
-    })
-
-    let answer = 'answer 1'
-    
     const nextOne = () => {
-        Answer1.classList.remove("answers-question-another")
-        Answer2.classList.remove("answers-question-another")
-        Answer3.classList.remove("answers-question-another")
-        Answer4.classList.remove("answers-question-another") 
-        Answer1.classList.remove("answer-good")
-        Answer2.classList.remove("answer-good")
-        Answer3.classList.remove("answer-good")
-        Answer4.classList.remove("answer-good")
-        Answer1.classList.remove("answer-bad")
-        Answer2.classList.remove("answer-bad")
-        Answer3.classList.remove("answer-bad")
-        Answer4.classList.remove("answer-bad")
+        answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
     }    
-
-    const givenAnswer1 = () =>{
-        let choosenAnswer1 = document.querySelector('.answer1').textContent
-          
-        if(answer === choosenAnswer1){
-            Answer1.classList.add("answer-good")  
-        
+     
+    answers.forEach(answer => answer.addEventListener('click', () => {
+        if(answer.textContent === correctAnswer){
+            answer.classList.add("answer-good")
             goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
-
+            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
         }
         else{
-            Answer1.classList.add("answer-bad")
+            answer.classList.add("answer-bad")
             badAnswers++;
-            localStorage.setItem('badAnswersKey', badAnswers ) 
-            
-        }  
-            Answer2.classList.add("answers-question-another")
-            Answer3.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-
-    const givenAnswer2 = () =>{
-        let choosenAnswer2 = document.querySelector('.answer2').textContent
-        
-        if(answer === choosenAnswer2){
-            Answer2.classList.add("answer-good")
-            goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
-    
+            sessionStorage.setItem('badAnswersKey', badAnswers ) 
         }
-        else{
-            Answer2.classList.add("answer-bad");
-            badAnswers++
-            localStorage.setItem('badAnswersKey', badAnswers ) 
-        }  
-            Answer3.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            Answer1.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-
-    }
-
-    const givenAnswer3 = () =>{
-        let choosenAnswer3 = document.querySelector('.answer3').textContent
-        
-        if(answer === choosenAnswer3){
-            Answer3.classList.add("answer-good")
-            goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
-        }
-        else{
-            Answer3.classList.add("answer-bad");
-            badAnswers++
-            localStorage.setItem('badAnswersKey', badAnswers ) 
-        }  
-            Answer1.classList.add("answers-question-another")
-            Answer2.classList.add("answers-question-another")
-            Answer4.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-
-    const givenAnswer4 = () =>{
-        let choosenAnswer4 = document.querySelector('.answer4').textContent
-        
-        if(answer === choosenAnswer4){
-            Answer4.classList.add("answer-good")
-            goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
-        }
-        else{
-            Answer4.classList.add("answer-bad")
-            badAnswers++
-            localStorage.setItem('badAnswersKey', badAnswers ) 
-        }  
-            Answer4.classList.add("answers-question-another")
-            Answer3.classList.add("answers-question-another")
-            Answer1.classList.add("answers-question-another")
-            setTimeout(function() { nextOne(); }, 500)
-    }
-    Answer1.addEventListener('click', givenAnswer1)
-    Answer2.addEventListener('click', givenAnswer2)
-    Answer3.addEventListener('click', givenAnswer3)
-    Answer4.addEventListener('click', givenAnswer4)
- 
-
+        answers.forEach(answer => answer.classList.add("answers-question-another"))
+        setTimeout(function() { nextOne(); }, 500)
+    }))     
 }
+
+
+
 

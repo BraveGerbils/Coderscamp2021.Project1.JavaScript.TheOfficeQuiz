@@ -5,6 +5,7 @@ import { ResultView } from "../ResultView/ResultView";
 import { GoodAnswerView } from "../GoodAnswerView/GoodAnswerView";
 import { elementFrom } from "../../shared/dom";
 
+/*
 const templateHtml = ({data}) => {
     return `
     <div>
@@ -32,7 +33,7 @@ const templateHtml = ({data}) => {
 </div>
 </div>`
 }
-
+*/
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});
