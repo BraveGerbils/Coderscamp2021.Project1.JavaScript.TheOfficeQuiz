@@ -1,15 +1,24 @@
-import { NavigationView } from "../views/NavigationView/NavigationView";
+
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
+import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
+
 
 export const App = ({renderOn}) => {
-
-    const navigationData = {
-        link1: "LINK1",
-        link2: "LINK2",
-        link3: "LINK3"
+        
+ 
+    const questionsData = {
+        buttonCategory1: "category 1",
+        buttonCategory2: "category 2",
+        buttonCategory3: "category 3",
+        questionWindow: "question",
+        buttonAnswer1: "answer 1",
+        buttonAnswer2: "answer 2",
+        buttonAnswer3: "answer 3",
+        buttonAnswer4: "answer 4",
     }
-    NavigationView({renderOn: renderOn, data: navigationData});
+   
+    GoodAnswerView({renderOn: renderOn, data:questionsData});
 
 
     const clockData = {
@@ -30,5 +39,7 @@ export const App = ({renderOn}) => {
     }
 
     ResultView({renderOn: renderOn, data: resultData});
+
+
 
 }

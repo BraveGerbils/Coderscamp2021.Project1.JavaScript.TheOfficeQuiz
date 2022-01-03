@@ -4,7 +4,7 @@ import style from "./timerView.styles.css";
 import { ResultView } from "../ResultView/ResultView";
 import { elementFrom } from "../../shared/dom";
 
-
+/*
 const templateHtml = ({data}) => {
     return `
     <div>
@@ -31,15 +31,12 @@ const templateHtml = ({data}) => {
     <div class="clock-bckg"></div>
 </div>
 </div>`
-
 }
+*/
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});
-        console.log(element)
-    
         document.querySelector(renderOn).appendChild(element);
-        console.log(renderOn)
     
         //display elements
         const displayMin = document.querySelector('.clock-displayMin');
@@ -92,30 +89,27 @@ const templateHtml = ({data}) => {
         const start = document.querySelector('.clock-start').addEventListener('click', function(e) {
             e.target.style.visibility = "hidden";
             buttons.forEach(button=> {button.style.visibility = "hidden"});
-            console.log("to secundes " + secundes)
-            
+            sessionStorage.setItem("minutes", minutes);
+            sessionStorage.setItem("secundes",secundes);
             let totalTime = secundes + (minutes * 60);
             let countTime = secundes + (minutes * 60);
             let currentTime = 0;
-            
             let displayInterval= setInterval(displayUpdate, 1000);
 
             function displayUpdate() {
                 if (minutes > 0 && secundes == 0) {
                     minutes--
                     displayMin.innerText = minutes.toString().padStart(2, '0');
-                   console.log("ttttaaa")
-                   secundes= 61;
-                   displaySec.innerText = secundes.toString().padStart(2, '0');
+                    secundes= 61;
+                    displaySec.innerText = secundes.toString().padStart(2, '0');
                     secundes--
-                   
                 }
 
                 if (totalTime > 0) {
                     totalTime--;
                     secundes--
-                    displaySec.innerText = secundes.toString().padStart(2, '0');
                     currentTime++;
+                    displaySec.innerText = secundes.toString().padStart(2, '0');
                     let progressTime = (currentTime * 100) / countTime;
                     let progressPerc = `${progressTime}%`
                     clockBckg.style.height = progressPerc;
@@ -124,15 +118,18 @@ const templateHtml = ({data}) => {
                 if (totalTime == 0) {
                     setTimeout(() => { 
                         clockBckg.style.height = "0%"; 
-                        e.target.style.visibility = "visible"
+                        e.target.style.visibility = "visible";
                         buttons.forEach(button=> {button.style.visibility = "visible"}) }, 2000);
-                        totalTime == 0
+                        totalTime == 0;
                         clockBckg.style.height = "100%";
                         clearInterval(displayInterval);
                 }
-             
+        
         }
+       
     });
-    }
+
+}
+
 
     
