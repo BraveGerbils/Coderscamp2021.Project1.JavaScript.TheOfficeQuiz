@@ -1,0 +1,115 @@
+.clock {
+    background-image: url('/src/assets/img/clock-back.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 210px;
+    height: 170px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px 1px black;
+    margin-left: 20px;
+}
+
+.clock-bckg {
+    width: 210px;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: 8px;
+    z-index: 10;
+    background-image: url("/src/assets/img/clock-bckgUpdate.png");
+    opacity: .5;
+    background-size: cover;
+    transition: height 1s linear;
+}
+
+.clock-btnWrap {
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-around;
+ 
+}
+
+.clock-btn {
+    cursor: pointer;
+    width: 24px;
+    background: transparent;
+    border: 1px solid transparent;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.clock-btn:hover {
+    transform: scale(1.2)
+}
+
+.clock-display {
+    font-family: 'Russo One', sans-serif;
+    font-size: 60px;
+    -webkit-text-stroke: 2px black;
+    color: white;
+    letter-spacing: 2px;
+    z-index: 1000;
+}
+
+.clock-displayWrap {
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+}
+
+.clock-displayMin {
+    z-index: 1000;
+}
+.clock-displaySec {
+    z-index: 1000;
+}
+.clock-paragraph {
+font-size: 12px;
+-webkit-text-stroke: 0;
+box-shadow: 1px 1px 1px 1px black;
+width: 80px;
+height: 15px;
+margin: 0 auto;
+align-self: center;
+justify-self: center;
+text-align: center;
+z-index: 1000;
+background: white;
+color: black;
+
+}
+
+/* start and end game */
+.clock-end {
+width:20px;
+padding: 0;
+box-shadow: 1px 1px 1px 1px black;
+z-index: 1000;
+}
+
+.clock-end:hover {
+    transform: scale(1.2);
+  }
+.clock-endImg {
+    width:16px;
+    cursor: pointer;
+}
+
+.clock-start {
+    font-family: 'Courier New';
+    width: 150px;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+    background-color: white;
+    
+}
+.clock-start:hover {
+    transform: scale(1.2)
+}
