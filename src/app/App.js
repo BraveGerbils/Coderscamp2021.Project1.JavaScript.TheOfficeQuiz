@@ -9,7 +9,7 @@ import { ResultSave } from "../views/ResultView/ResultSave";
 
 
 export const App = ({renderOn}) => {
-
+    
     const navigationData = {
 
     }
