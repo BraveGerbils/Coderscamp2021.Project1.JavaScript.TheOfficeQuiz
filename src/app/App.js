@@ -5,6 +5,7 @@ import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
 import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
 import { ResultSave } from "../views/ResultView/ResultSave";
+/* import { CharactersGoodAnswerView } from "../views/CharactersGoodAnswerViews/charactersGoodAnswerViews.js"; */
 
 
 
@@ -40,7 +41,7 @@ export const App = ({renderOn}) => {
         buttonAnswer4: "answer 4",
     }
    
-    GoodAnswerView({renderOn: renderOn, data:questionsData});
+    /* GoodAnswerView({renderOn: renderOn, data:questionsData}); */
 
 
    
@@ -62,5 +63,6 @@ export const App = ({renderOn}) => {
 
 
     ResultSave({renderOn: renderOn, data: saveData});
+    /* CharactersGoodAnswerView({renderOn: renderOn, data:questionsData}); */
 
 }

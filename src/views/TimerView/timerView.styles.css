@@ -3,8 +3,10 @@
     background-position: center;
     background-size: cover;
     width: 210px;
-    height: 170px;
-    position: relative;
+    height: 150px;
+    position: absolute;
+    top: -1%;
+    right: 1%;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
