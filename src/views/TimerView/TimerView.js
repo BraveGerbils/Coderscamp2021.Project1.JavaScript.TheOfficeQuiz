@@ -4,12 +4,13 @@ import style from "./timerView.styles.css";
 import { ResultView } from "../ResultView/ResultView";
 import { GoodAnswerView } from "../GoodAnswerView/GoodAnswerView";
 import { elementFrom } from "../../shared/dom";
+/* import { CharactersGoodAnswerView } from "../CharactersGoodAnswerViews/charactersGoodAnswerViews"; */
 
-/*
+
 const templateHtml = ({data}) => {
     return `
     <div>
-    <button class="clock-start" id="start">${data.buttonStart}</button>
+    
     <div class="clock">
     
     <button class="clock-end" title="restart time">${data.buttonEnd}</button>
@@ -33,7 +34,7 @@ const templateHtml = ({data}) => {
 </div>
 </div>`
 }
-*/
+
 
     export const TimerView = ({renderOn, data}) => {
         const element = elementFrom({html: templateHtml({data})});

@@ -3,8 +3,10 @@
     background-position: center;
     background-size: cover;
     width: 210px;
-    height: 170px;
-    position: relative;
+    height: 150px;
+    position: absolute;
+    top: -1%;
+    right: 1%;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -100,16 +102,7 @@ z-index: 1000;
     cursor: pointer;
 }
 
-.clock-start {
-    font-family: 'Courier New';
-    width: 150px;
-    cursor: pointer;
-    outline: none;
-    background: transparent;
-    border: 1px solid transparent;
-    background-color: white;
-    
-}
+
 .clock-start:hover {
     transform: scale(1.2)
 }
