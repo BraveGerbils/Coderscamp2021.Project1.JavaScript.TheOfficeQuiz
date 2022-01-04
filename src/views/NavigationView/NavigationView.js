@@ -39,28 +39,6 @@ const templateHtml = ({data}) => {
                                 <div class="office-gamemode-playbutton">
                                     <button class="clock-start" id="start">Play</button>
                                 </div>
-                                <div>
-                                    <div class="clock">
-                                        <button class="clock-end" title="restart time">${data.buttonEnd}</button>
-                                    <div class="clock-display">
-                                        <div class="clock-displayWrap">
-                                            <div class="clock-displayMin" id="clock-displayMin">${data.displayMin}</div>
-                                            <div class="clock-displaySec" id="clock-displaySec">${data.displaySec}</div>
-                                        </div>
-                                        <div class="clock-displayWrap">
-                                            <p class="clock-paragraphMin clock-paragraph">${data.paragraphMin}</p>
-                                            <p class="clock-paragraphSec clock-paragraph">${data.paragraphSec}</p>
-                                        </div>
-                                    </div>
-                                    <div class="clock-btnWrap">
-                                        <button class="clock-btn clock-addMin">${data.plusBtn}</button>
-                                        <button class="clock-btn clock-remMin">${data.minBtn}</button>
-                                        <button class="clock-btn clock-addSec">${data.plusBtn}</button>
-                                        <button class="clock-btn clock-remSec" >${data.minBtn}</button>
-                                    </div>
-                                        <div class="clock-bckg"></div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

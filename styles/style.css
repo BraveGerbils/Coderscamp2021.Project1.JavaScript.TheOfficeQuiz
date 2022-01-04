@@ -30,7 +30,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .office-app {
+    display: flex;
     flex-direction: column;
     align-content: center;
     width: 100%;
@@ -53,16 +55,7 @@ body {
     font-weight: 600;
 }
 
-.office-gamemode-bar button:hover {
-    cursor: pointer;
-    font-size: 1.2em;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    background-color: rgb(223, 172, 113);
-    height: 90px;
-    margin-bottom: 40px;
-}
-
-.office-gamemode-bar button {
+.office-gamemode-bar button{
     font-family: 'Courier New', sans-serif;
     border-style: none none solid solid;
     border-color: rgb(175, 164, 126);
@@ -73,13 +66,21 @@ body {
     margin-bottom: 10px;
 }
 
+.office-gamemode-bar button:hover {
+    cursor: pointer;
+    font-size: 1.2em;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    background-color: rgb(223, 172, 113);
+    height: 90px;
+    margin-bottom: 40px;
+}
+
 .office-main-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0px 3%;
-    min-width: 600px;
-    max-width: 800px;
+    width: 800px;
 }
 
 .office-gamemode-body {
@@ -191,15 +192,15 @@ body {
     border: 2px dashed black;
 }
 
-
 .office-bar-right {
     background-image: url('/static/ui/pen-bar.png');
     background-position: center;
     background-size: contain;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    max-width: 90px;
     min-width: 90px;
+    max-width: 90px;
     margin-right: 5%;
 }
 
@@ -207,13 +208,13 @@ body {
     background-image: url('/static/ui/pencil-bar.png');
     background-position: center;
     background-size: contain;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    max-width: 90px;
     min-width: 90px;
+    max-width: 90px;
     margin-left: 5%;
 }
-
 
 .office-bar-mode {
     padding: 1rem;
