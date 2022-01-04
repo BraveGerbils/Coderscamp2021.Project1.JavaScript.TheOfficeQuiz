@@ -1,0 +1,11 @@
+.link {
+    color: blue;
+  }
+  
+  .link:hover {
+    color: darkblue;
+  }
+  
+  .office-app {
+    display: flex;
+  }
