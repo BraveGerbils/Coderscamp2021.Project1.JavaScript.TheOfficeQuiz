@@ -62,20 +62,20 @@ export const GoodAnswerView = ({renderOn, data}) => {
         let badAnswers = 0;
 
 
-    let start = document.querySelector('.clock-start')
-    start.addEventListener('click', function(e) {
-        if(e.target.id = "start") { 
-            localStorage.removeItem("goodAnswersKey")
-            localStorage.removeItem("badAnswersKey")
-            goodAnswers = 0;
-            badAnswers = 0;
-        }
-    })
+        let start = document.querySelector('.clock-start')
+        start.addEventListener('click', function(e) {
+            if(e.target.id = "start") { 
+                localStorage.removeItem("goodAnswersKey")
+                localStorage.removeItem("badAnswersKey")
+                goodAnswers = 0;
+                badAnswers = 0;
+            }
+        })
 
 
-    const nextOne = () => {
-        answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
-    }    
+        const nextOne = () => {
+            answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
+        }    
      
     
         const randomQuestion = (data) => {
@@ -89,22 +89,21 @@ export const GoodAnswerView = ({renderOn, data}) => {
         const displayData = (question) =>{
             const dataArray = question.answers;
             const questionParagraph = document.getElementById("question");
-            const answer1 = document.getElementById("answer1");
-            const answer2 = document.getElementById("answer2");
-            const answer3 = document.getElementById("answer3");
-            const answer4 = document.getElementById("answer4");
+            const answer1 = document.getElementById("answer5");
+            const answer2 = document.getElementById("answer6");
+            const answer3 = document.getElementById("answer7");
+            const answer4 = document.getElementById("answer8");
 
-            questionParagraph.innerHTML = question.question
-            answer1.innerHTML = dataArray[0]
-            answer2.innerHTML = dataArray[1]
-            answer3.innerHTML = dataArray[2]
-            answer4.innerHTML = dataArray[3]
+            questionParagraph.innerHTML = question.question;
+            answer1.innerHTML = dataArray[0];
+            answer2.innerHTML = dataArray[1];
+            answer3.innerHTML = dataArray[2];
+            answer4.innerHTML = dataArray[3];
         }
          
 
         let question = randomQuestion(data);
         questionsArray.push(question.question);
-        console.log (question);
 
         displayData(question);
         let correctAnswer = getCorrectAnswer(question);

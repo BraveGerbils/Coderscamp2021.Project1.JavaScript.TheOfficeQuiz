@@ -25,15 +25,13 @@ export const App = ({renderOn}) => {
     
     NavigationView({renderOn: renderOn, data: navigationData}) 
 
-    
-    NavigationView({renderOn: renderOn, data: navigationData})
-    const blue = fetchQuotes().then(data => console.log(data))
+
 
     const clockData = {
         buttonStart: "START",
         buttonEnd: '🦄',
-        displayMin: "01",
-        displaySec:"00",
+        displayMin: "00",
+        displaySec:"30",
         paragraphMin: "minutes",
         paragraphSec: "secundes",
         plusBtn: "+",

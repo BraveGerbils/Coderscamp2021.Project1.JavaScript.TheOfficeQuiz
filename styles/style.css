@@ -137,7 +137,7 @@ body {
     margin: 0;
 }
 
-.office-gamemode-playbutton button:hover{
+.office-gamemode-playbutton button:hover, .office-gamemode-playbutton-quotes button:hover{
     cursor: pointer;
     text-shadow: 5px 5px 5px rgba(0,0,0,0.7);
     font-size: 2.5em;
