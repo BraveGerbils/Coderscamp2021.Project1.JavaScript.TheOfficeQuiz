@@ -4,22 +4,13 @@
     padding: 0;
     }   
    
-#quotesView, #charactersView, .removeClass, .goodAnswer, .office-gamemode-body-content-quotes, .office-gamemode-playbutton-quotes, .office-gamemode-body-content-additional{
+.charactersGoodAnswer{
     display: none;
-}
-
-.playGame{
-    display: block !important;
-}
-
-.office-gamemode-body-content-quotes-active, .office-gamemode-playbutton-quotes-active, .office-gamemode-body-content-additional-active{
-    display: flex !important;
 }
 
 .radius{
     border-radius: 10px;
 }
-
 .office-gamemode-bar-quiz {
     display: flex;
     text-align: center;
@@ -40,40 +31,36 @@
     margin-bottom: 10px;
 }
 
-.office-gamemode-body-left{
-    margin-top: 40px;
-}
-
-.office-gamemode-body-right{
+.office-gamemode-body-content-quiz {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    width: 75%;
+    padding-top: 2%;
+}
+.office-gamemode-character-template-quiz {
+    padding-top: 2%;
+    display: flex;
+    align-self: center;
+    width: 35%;
 }
 
-.office-gamemode-body-quiz {
-    display: grid;
-    grid-template-columns: 0.6fr 0.4fr;
-    height: 630px;
-    width: auto;
-    background-color: rgb(219, 204, 174);
-    box-shadow: 5px -5px 10px 0px rgba(0, 0, 0, 0.2), 10px -10px 0px 5px rgba(219, 204, 174);
-    border-radius: 0px 20px 20px 20px;
-    font-weight: 600;
-}
-
-.office-who-quiz {
-    width: 50%;
+.office-who {
     background-color: white;
     text-align: center;
     font-size: 25px;
     padding: 10px;
-    margin: 0px auto 30px;
+    margin: 15px auto 0;
 }
 
-.office-gamemode-body-text-quiz-quotes {
-    min-height: 300px;
-    max-height: 340px;
-    margin: 0px 2rem 30px;
+.office-gamemode-content-quiz {
+    display: flex;
+    justify-content: center;
+}
+
+.office-gamemode-body-text-quiz {
+    height: 75%;
+    margin: 0px 2rem;
     padding: 10px 20px;
     background-color: rgb(253, 250, 250);
     border-radius: 15px;
@@ -82,26 +69,11 @@
     align-items: center;
 }
 
-.office-gamemode-character-template-img-quiz {
-    position: relative;
-    right: 5%;
-    background-image: url('/static/images/character-template-img.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 0;
-    padding-top: 130%; /* ~ (img-height / img-width * width) */
-    /* (1000 / 750 * 100) */
-    border: 2px dashed black;
-}
-
 .office-gamemode-body-text-quiz-question{
     font-size: 18px;
-    font-style: italic;
 }
-
 .answers-grid{
+    margin-top: 2.5%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;          
@@ -114,7 +86,6 @@
 .answers-grid :nth-child(1),.answers-grid :nth-child(3){
     margin-right: 3%;
 }    
-
 .answers-question{ 
     background-color: white;
     text-align: center;
@@ -152,7 +123,23 @@
     cursor: auto;
 }
 
+.clock-position{
+    width: 35%;
+    padding-left: 1.1%;
+}
 
+.clock{
+    margin-top: 25px;
+}
+
+
+
+@media(max-width: 1040px) {
+    .clock{
+    margin-top: 10px;
+    width: auto;
+}
+}
 
 
 
