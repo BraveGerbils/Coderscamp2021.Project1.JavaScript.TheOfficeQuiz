@@ -51,8 +51,8 @@ const templateHtml = ({data}) => {
         let startButtonsNode = document.querySelectorAll('.clock-start');
         let startButtons = Array.from(startButtonsNode);
     
-        let minutes = 1;
-        let secundes = 0;
+        let minutes = 0;
+        let secundes = 30;
     /*
         const plusMin = document.querySelector('.clock-addMin').addEventListener('click', function() {
             minutes++;

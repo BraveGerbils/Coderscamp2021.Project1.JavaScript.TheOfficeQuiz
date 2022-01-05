@@ -1,6 +1,8 @@
 import style from "./charactersGoodAnswerViews.css"; 
 import { elementFrom } from "../../shared/dom";
 import TimerView  from "../TimerView/TimerView";
+import { charactersQuestion } from "../../modes/CharactersQuestion";
+import { fetchCharacters } from "../../app/officeApi";
 
 const templateHtml = ({data}) => {
     return ` 
@@ -46,40 +48,91 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
     const element = elementFrom({html: templateHtml({data})});
     document.querySelector(renderOn).appendChild(element);
     
-    const answersNode = document.querySelectorAll('.answers-grid button')
-    let answers = Array.from(answersNode)
-    let correctAnswer = 'answer 1' //temporarily 
-    let goodAnswers = 0;
-    let badAnswers= 0;
+    fetchCharacters().then(data => {
+        const answersNode = document.querySelectorAll('.answers-grid button')
+        let answers = Array.from(answersNode)
+        const questionsArray = []; 
 
-    let start = document.querySelector('.clock-start')
-    start.addEventListener('click', function(e) {
-        if(e.target.id = "start") { 
-            localStorage.removeItem("goodAnswersKey")
-            localStorage.removeItem("badAnswersKey")
-            goodAnswers = 0;
-            badAnswers = 0;
-        }
-    })
+        let goodAnswers = 0;
+        let badAnswers= 0;
+        let start = document.querySelector('.clock-start')
+        start.addEventListener('click', function(e) {
+            if(e.target.id = "start") { 
+                localStorage.removeItem("goodAnswersKey")
+                localStorage.removeItem("badAnswersKey")
+                goodAnswers = 0;
+                badAnswers = 0;
+            }
+        })
 
+        const nextOne = () => {
+            answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
+        }    
 
-    const nextOne = () => {
-        answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
-    }    
-     
-    answers.forEach(answer => answer.addEventListener('click', () => {
-        if(answer.textContent === correctAnswer){
-            answer.classList.add("answer-good")
-            goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
+        const randomQuestion = (data) => {
+            return charactersQuestion(data);
         }
-        else{
-            answer.classList.add("answer-bad")
-            badAnswers++;
-            localStorage.setItem('badAnswersKey', badAnswers ) 
+
+        const getCorrectAnswer = (question) => {
+            return question.rightAnswer
         }
-        answers.forEach(answer => answer.classList.add("answers-question-another"))
-        setTimeout(function() { nextOne(); }, 500)
-    }))     
+
+        const displayData = (question) =>{
+            const dataArray = question.answers;
+
+            // const imgContainer = document.querySelector(".office-gamemode-character-template-img");
+            // const imgContainer = document.getElementById("question-img");
+            const answer1 = document.getElementById("answer1");
+            const answer2 = document.getElementById("answer2");
+            const answer3 = document.getElementById("answer3");
+            const answer4 = document.getElementById("answer4");
+
+            // imgContainer.style.zIndex = "1"
+            // imgContainer.style.backgroundImage = `url(${question.question})`
+
+            answer1.innerHTML = dataArray[0];
+            answer2.innerHTML = dataArray[1];
+            answer3.innerHTML = dataArray[2];
+            answer4.innerHTML = dataArray[3];
+        
+        }
+         
+        let question = randomQuestion(data);
+        questionsArray.push(question.question);
+
+        displayData(question);
+        let correctAnswer = getCorrectAnswer(question);
+        
+        answers.forEach(answer => answer.addEventListener('click', () => {
+            if(answer.textContent === correctAnswer){
+                answer.classList.add("answer-good")
+                goodAnswers++
+                sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+                question = randomQuestion(data);
+
+                while (questionsArray.includes(question)){
+                    question = randomQuestion(data);
+                }
+                questionsArray.push(question.question);
+                setTimeout(function() { displayData(question); }, 500);
+                correctAnswer = getCorrectAnswer(question);
+            }
+            else{
+                answer.classList.add("answer-bad")
+                badAnswers++;
+                sessionStorage.setItem('badAnswersKey', badAnswers ) 
+                question = randomQuestion(data);
+
+                while (questionsArray.includes(question)){
+                    question = randomQuestion(data);
+                }
+                questionsArray.push(question.question);
+                setTimeout(function() { displayData(question); }, 500);
+                correctAnswer = getCorrectAnswer(question);
+
+            }
+            answers.forEach(answer => answer.classList.add("answers-question-another"))
+            setTimeout(function() { nextOne(); }, 500)
+        }))   
+    })  
 }
-

@@ -28,10 +28,10 @@ const templateHtml = ({data}) => {
                             </div>
                             <div class="answers">
                                 <div class="answers-grid">
-                                    <button class="answers-question radius">${data.buttonAnswer1}</button>
-                                    <button class="answers-question radius">${data.buttonAnswer2}</button>
-                                    <button class="answers-question radius">${data.buttonAnswer3}</button>
-                                    <button class="answers-question radius">${data.buttonAnswer4}</button>
+                                    <button class="answers-question radius" id="answer1"></button>
+                                    <button class="answers-question radius" id="answer2"></button>
+                                    <button class="answers-question radius" id="answer3"></button>
+                                    <button class="answers-question radius" id="answer4"></button>
                                 </div>
                             </div>  
                         </div>
@@ -48,14 +48,14 @@ const templateHtml = ({data}) => {
                                     <p>Who said that?</p>
                                 </div>
                                 <div class="office-gamemode-body-text-quiz-quotes">
-                                    <p class="office-gamemode-body-text-quiz-question">${data.questionWindow}</p>
+                                    <p class="office-gamemode-body-text-quiz-question" id="question"></p>
                                 </div>
                                 <div class="answers">
                                     <div class="answers-grid">
-                                        <button class="answers-question radius">${data.buttonAnswer1}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer2}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer3}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer4}</button>
+                                        <button class="answers-question radius" id="answer5"></button>
+                                        <button class="answers-question radius" id="answer6"></button>
+                                        <button class="answers-question radius" id="answer7"></button>
+                                        <button class="answers-question radius" id="answer8"></button>
                                     </div>
                                 </div>
                             </div>    
@@ -94,7 +94,7 @@ const templateHtml = ({data}) => {
                                 </div>
                                 <div class="office-gamemode-body-content-additional">
                                     <div class="office-gamemode-body-title">
-                                        <p>In progress..</p>
+                                        <p>In progress...</p>
                                     </div>
                                 </div>
                                 <div class="office-gamemode-character-template">

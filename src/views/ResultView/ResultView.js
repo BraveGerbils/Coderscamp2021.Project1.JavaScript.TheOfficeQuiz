@@ -12,7 +12,7 @@ const templateHtml = ({ data }) => {
         <h2 class="result-heading">GAME OVER!</h2>
         
         <div class="result-wrp">
-            <img src="result-dwight.b97e6149.png" class="result-dwightImg">
+            <img class="result-dwightImg">
             <div class="result-paragraphs">
                 <p class="result-parag">Your playing time is: <span class="result-span" id="result-time"></span></p>
                 <p class="result-parag parag">In the chosen time you have got 
@@ -26,13 +26,6 @@ const templateHtml = ({ data }) => {
         </div>
         <p class="result-quote">Michael says: 
         <span id="result-quote"></span>
-        <p>
-        <div class="result-inputWrp">
-        <label for="result-nameId" class="result-label">Enter Your name:
-        <input id="result-nameId" type="text" class="result-name" placeholder="Your name...">
-        </label>
-        <button type="submit" class="result-save" id="result-save" value="save your result">Save Your result!</button>
-        </div>
 </div>`
 }
 

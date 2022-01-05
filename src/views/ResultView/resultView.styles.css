@@ -26,6 +26,10 @@
  width: 160px;
  height: fit-content;
  display: inline;
+ background-image: url('/src/assets/img/result-dwight.png');
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
 }
 
 .result-esc {
