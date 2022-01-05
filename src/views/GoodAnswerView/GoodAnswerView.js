@@ -1,6 +1,8 @@
 import style from "./goodAnswer.styles.css"; 
+import { quotesQuestion } from "../../modes/QuotesQuestion";
 import { elementFrom } from "../../shared/dom";
 import TimerView  from "../TimerView/TimerView";
+import { fetchCharacters, fetchQuotes, fetchEpisodes} from "../../app/officeApi";
 
 const templateHtml = ({data}) => {
     return ` 
@@ -23,14 +25,14 @@ const templateHtml = ({data}) => {
                                     <p>Who said that?</p>
                                 </div>
                                 <div class="office-gamemode-body-text-quiz-quotes">
-                                    <p class="office-gamemode-body-text-quiz-question">${data.questionWindow}</p>
+                                    <p class="office-gamemode-body-text-quiz-question" id="question"></p>
                                 </div>
                                 <div class="answers">
                                     <div class="answers-grid">
-                                        <button class="answers-question radius">${data.buttonAnswer1}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer2}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer3}</button>
-                                        <button class="answers-question radius">${data.buttonAnswer4}</button>
+                                        <button class="answers-question radius" id="answer1"></button>
+                                        <button class="answers-question radius" id="answer2"></button>
+                                        <button class="answers-question radius" id="answer3"></button>
+                                        <button class="answers-question radius" id="answer4"></button>
                                     </div>
                                 </div>
                             </div>    
@@ -45,17 +47,20 @@ const templateHtml = ({data}) => {
 }
 
 
-// Good answer //
-
 export const GoodAnswerView = ({renderOn, data}) => {
     const element = elementFrom({html: templateHtml({data})});
     document.querySelector(renderOn).appendChild(element);
+      
     
-    const answersNode = document.querySelectorAll('.answers-grid button')
-    let answers = Array.from(answersNode)
-    let correctAnswer = 'answer 1' //temporarily 
-    let goodAnswers = 0;
-    let badAnswers= 0;
+    
+    fetchQuotes().then(data => {
+        const answersNode = document.querySelectorAll('.answers-grid button')
+        const questionsArray = []; 
+        
+        let answers = Array.from(answersNode)
+        let goodAnswers = 0;
+        let badAnswers = 0;
+
 
     let start = document.querySelector('.clock-start')
     start.addEventListener('click', function(e) {
@@ -72,21 +77,68 @@ export const GoodAnswerView = ({renderOn, data}) => {
         answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
     }    
      
-    answers.forEach(answer => answer.addEventListener('click', () => {
-        if(answer.textContent === correctAnswer){
-            answer.classList.add("answer-good")
-            goodAnswers++
-            localStorage.setItem('goodAnswersKey', goodAnswers ) 
+    
+        const randomQuestion = (data) => {
+            return quotesQuestion(data);
         }
-        else{
-            answer.classList.add("answer-bad")
-            badAnswers++;
-            localStorage.setItem('badAnswersKey', badAnswers ) 
+
+        const getCorrectAnswer = (question) => {
+            return question.rightAnswer
         }
-        answers.forEach(answer => answer.classList.add("answers-question-another"))
-        setTimeout(function() { nextOne(); }, 500)
-    }))     
+
+        const displayData = (question) =>{
+            const dataArray = question.answers;
+            const questionParagraph = document.getElementById("question");
+            const answer1 = document.getElementById("answer1");
+            const answer2 = document.getElementById("answer2");
+            const answer3 = document.getElementById("answer3");
+            const answer4 = document.getElementById("answer4");
+
+            questionParagraph.innerHTML = question.question
+            answer1.innerHTML = dataArray[0]
+            answer2.innerHTML = dataArray[1]
+            answer3.innerHTML = dataArray[2]
+            answer4.innerHTML = dataArray[3]
+        }
+         
+
+        let question = randomQuestion(data);
+        questionsArray.push(question.question);
+        console.log (question);
+
+        displayData(question);
+        let correctAnswer = getCorrectAnswer(question);
+        
+        
+        answers.forEach(answer => answer.addEventListener('click', () => {
+            if(answer.textContent === correctAnswer){
+                answer.classList.add("answer-good")
+                goodAnswers++
+                localStorage.setItem('goodAnswersKey', goodAnswers )
+                question = randomQuestion(data);
+
+                while (questionsArray.includes(question)){
+                    question = randomQuestion(data);
+                }
+                questionsArray.push(question.question);
+                setTimeout(function() { displayData(question); }, 500);
+                correctAnswer = getCorrectAnswer(question);
+            }
+            else{
+                answer.classList.add("answer-bad")
+                badAnswers++;
+                localStorage.setItem('badAnswersKey', badAnswers ) 
+                question = randomQuestion(data);
+                while (questionsArray.includes(question)){
+                    question = randomQuestion(data);
+                }
+                questionsArray.push(question.question);
+                setTimeout(function() { displayData(question); }, 500);
+                correctAnswer = getCorrectAnswer(question);
+            }
+            answers.forEach(answer => answer.classList.add("answers-question-another"))
+            setTimeout(function() { nextOne(); }, 500)
+        }))   
+    })  
 }
-
-
 
