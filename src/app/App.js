@@ -1,5 +1,5 @@
 
-import { NavigationView } from "../views/NavigationView/NavigationView";
+// import { NavigationView } from "../views/NavigationView/NavigationView";
 import { fetchCharacters, fetchQuotes, fetchEpisodes} from "./officeApi";
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
@@ -11,12 +11,12 @@ import { ResultSave } from "../views/ResultView/ResultSave";
 
 export const App = ({renderOn}) => {
     
-    const navigationData = {
+    // const navigationData = {
 
-    }
+    // }
     
-    NavigationView({renderOn: renderOn, data: navigationData})
-
+    // NavigationView({renderOn: renderOn, data: navigationData})
+    const blue = fetchQuotes().then(data => console.log(data))
     const clockData = {
         buttonStart: "START",
         buttonEnd: '🦄',
@@ -28,21 +28,21 @@ export const App = ({renderOn}) => {
         minBtn: "-",
     }
 
-    TimerView({renderOn: renderOn, data: clockData});
-
+    
+    
     const questionsData = {
         buttonCategory1: "category 1",
         buttonCategory2: "category 2",
         buttonCategory3: "category 3",
-        questionWindow: "question",
-        buttonAnswer1: "answer 1",
-        buttonAnswer2: "answer 2",
-        buttonAnswer3: "answer 3",
-        buttonAnswer4: "answer 4",
+        // questionWindow: "question",
+        // buttonAnswer1: "answer 1",
+        // buttonAnswer2: "answer 2",
+        // buttonAnswer3: "answer 3",
+        // buttonAnswer4: "answer 4",
     }
    
-    /* GoodAnswerView({renderOn: renderOn, data:questionsData}); */
-
+    GoodAnswerView({renderOn: renderOn, data:questionsData});
+    TimerView({renderOn: renderOn, data: clockData});
 
    
     
@@ -61,7 +61,8 @@ export const App = ({renderOn}) => {
        
     }
 
-
+    
     ResultSave({renderOn: renderOn, data: saveData});
+    
     /* CharactersGoodAnswerView({renderOn: renderOn, data:questionsData}); */
 }

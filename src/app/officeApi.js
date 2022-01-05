@@ -2,22 +2,23 @@ import { URL } from "../shared/config";
 
 export const fetchCharacters = async () => {
     const url = `${URL}characters`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data));
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
 }
+    
 
 export const fetchQuotes = async () => {
     const url = `${URL}quotes`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data));
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
 }
 
 
 export const fetchEpisodes = async () => {
-    const url = `${URL}episodes` ;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data));
+    const url = `${URL}episodes`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
 }
