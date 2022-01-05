@@ -1,6 +1,7 @@
 import style from "./resultView.styles.css";
 import { elementFrom } from "../../shared/dom";
 import { ResultMichaelSays } from "./ResultMichaelSays";
+import { TimerView } from "../TimerView/TimerView";
 
 
 const templateHtml = ({ data }) => {
@@ -61,7 +62,10 @@ export const ResultView = ({ renderOn, data }) => {
     const resultQuotes = document.getElementById('result-quote');
 
     //start element 
-    const start = document.getElementById('start').addEventListener('click', function () {
+    const start = document.getElementById('start').addEventListener('click', counting)
+    const start2= document.getElementById('startQuotes').addEventListener('click', counting)
+
+     function counting () {
     
         let countTimeInterval = setInterval(showResult, 1000);
        
@@ -109,6 +113,6 @@ export const ResultView = ({ renderOn, data }) => {
         }
        
   
-    })
+    }
     
 }

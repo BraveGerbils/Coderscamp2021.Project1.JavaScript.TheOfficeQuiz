@@ -3,12 +3,13 @@
 import style from "./timerView.styles.css";
 import { ResultView } from "../ResultView/ResultView";
 import { GoodAnswerView } from "../GoodAnswerView/GoodAnswerView";
+import { CharactersGoodAnswerView } from "../CharactersGoodAnswer/charactersGoodAnswerView";
 import { elementFrom } from "../../shared/dom";
 
 const templateHtml = ({data}) => {
     return `
     <div>
-  
+        
     <div class="clock">
     
     <button class="clock-end" title="restart time">${data.buttonEnd}</button>
@@ -22,16 +23,18 @@ const templateHtml = ({data}) => {
             <p class="clock-paragraphSec clock-paragraph">${data.paragraphSec}</p>
         </div>
     </div>
-    <div class="clock-btnWrap">
-        <button class="clock-btn clock-addMin">${data.plusBtn}</button>
-        <button class="clock-btn clock-remMin">${data.minBtn}</button>
-        <button class="clock-btn clock-addSec">${data.plusBtn}</button>
-        <button class="clock-btn clock-remSec" >${data.minBtn}</button>
-    </div>
+    
     <div class="clock-bckg"></div>
 </div>
 </div>`
 }
+
+/*<div class="clock-btnWrap">
+        <button class="clock-btn clock-addMin">${data.plusBtn}</button>
+        <button class="clock-btn clock-remMin">${data.minBtn}</button>
+        <button class="clock-btn clock-addSec">${data.plusBtn}</button>
+        <button class="clock-btn clock-remSec" >${data.minBtn}</button>
+    </div>*/
 
 
     export const TimerView = ({renderOn, data}) => {
@@ -43,10 +46,12 @@ const templateHtml = ({data}) => {
         const displaySec = document.querySelector('.clock-displaySec');
         const clockBckg = document.querySelector('.clock-bckg');
         const buttons = document.querySelectorAll('.clock-btnWrap');
+        let startButtonsNode = document.querySelectorAll('.clock-start');
+        let startButtons = Array.from(startButtonsNode);
     
-        let minutes = 0;
+        let minutes = 1;
         let secundes = 0;
-    
+    /*
         const plusMin = document.querySelector('.clock-addMin').addEventListener('click', function() {
             minutes++;
             displayMin.innerText = minutes.toString().padStart(2, '0');
@@ -81,12 +86,12 @@ const templateHtml = ({data}) => {
                 displaySec.innerText = secundes.toString().padStart(2, '0');
             }
         });;
-        
+        */
         const end = document.querySelector('.clock-end').addEventListener('click', function() {
             history.go();
         });;
 
-        const start = document.querySelector('.clock-start').addEventListener('click', function(e) {
+        startButtons.forEach(startButton => startButton.addEventListener('click', function(e) {
             e.target.style.visibility = "hidden";
             buttons.forEach(button=> {button.style.visibility = "hidden"});
             sessionStorage.setItem("minutes", minutes);
@@ -126,8 +131,9 @@ const templateHtml = ({data}) => {
                 }
         
         }
+        
        
-    });
+    }));
 
 }
 

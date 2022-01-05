@@ -4,6 +4,10 @@
     padding: 0;
     }   
    
+.charactersGoodAnswer{
+    display: none;
+}
+
 .radius{
     border-radius: 10px;
 }

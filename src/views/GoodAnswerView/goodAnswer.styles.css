@@ -4,9 +4,22 @@
     padding: 0;
     }   
    
+#quotesView, #charactersView, .removeClass, .goodAnswer, .office-gamemode-body-content-quotes, .office-gamemode-playbutton-quotes, .office-gamemode-body-content-additional{
+    display: none;
+}
+
+.playGame{
+    display: block !important;
+}
+
+.office-gamemode-body-content-quotes-active, .office-gamemode-playbutton-quotes-active, .office-gamemode-body-content-additional-active{
+    display: flex !important;
+}
+
 .radius{
     border-radius: 10px;
 }
+
 .office-gamemode-bar-quiz {
     display: flex;
     text-align: center;

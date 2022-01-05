@@ -5,11 +5,11 @@
     width: 210px;
     height: 150px;
     position: absolute;
-    top: -1%;
+    top: 1%;
     right: 1%;
     border-radius: 8px;
     overflow: hidden;
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 1px 1px 1px 1px black;
@@ -46,7 +46,7 @@
 }
 
 .clock-btn:hover {
-    transform: scale(1.2)
+    transform: scale(1.2);
 }
 
 .clock-display {
@@ -67,9 +67,11 @@
 .clock-displayMin {
     z-index: 1000;
 }
+
 .clock-displaySec {
     z-index: 1000;
 }
+
 .clock-paragraph {
 font-size: 12px;
 -webkit-text-stroke: 0;
@@ -96,7 +98,8 @@ z-index: 1000;
 
 .clock-end:hover {
     transform: scale(1.2);
-  }
+} 
+
 .clock-endImg {
     width:16px;
     cursor: pointer;
@@ -113,5 +116,5 @@ z-index: 1000;
     
 }
 .clock-start:hover {
-    transform: scale(1.2)
+    transform: scale(1.2);
 }

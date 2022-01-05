@@ -4,14 +4,14 @@ import TimerView  from "../TimerView/TimerView";
 
 const templateHtml = ({data}) => {
     return ` 
-        <div id="office-app" class="office-app">
+        <div id="office-app" class="office-app charactersGoodAnswer">
                 <div class="office-header">
                     <div class="office-logo">
                     </div>
                 </div>
                 <div class="office-content">
                     <div class="office-bar-left"></div>
-                    <div class="office-main-body">
+                    <div id="charactersView" class="office-main-body">
                         <div class="office-gamemode-bar-quiz">
                             <button class="office-bar-mode">Character</button>
                             <button class="office-bar-mode">Quote</button>
@@ -52,6 +52,17 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
     let goodAnswers = 0;
     let badAnswers= 0;
 
+    let start = document.querySelector('.clock-start')
+    start.addEventListener('click', function(e) {
+        if(e.target.id = "start") { 
+            localStorage.removeItem("goodAnswersKey")
+            localStorage.removeItem("badAnswersKey")
+            goodAnswers = 0;
+            badAnswers = 0;
+        }
+    })
+
+
     const nextOne = () => {
         answers.forEach(answer => answer.classList.remove("answers-question-another", "answer-good", "answer-bad"))
     }    
@@ -60,17 +71,15 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         if(answer.textContent === correctAnswer){
             answer.classList.add("answer-good")
             goodAnswers++
-            sessionStorage.setItem('goodAnswersKey', goodAnswers ) 
+            localStorage.setItem('goodAnswersKey', goodAnswers ) 
         }
         else{
             answer.classList.add("answer-bad")
             badAnswers++;
-            sessionStorage.setItem('badAnswersKey', badAnswers ) 
+            localStorage.setItem('badAnswersKey', badAnswers ) 
         }
         answers.forEach(answer => answer.classList.add("answers-question-another"))
         setTimeout(function() { nextOne(); }, 500)
     }))     
 }
-
-
 
