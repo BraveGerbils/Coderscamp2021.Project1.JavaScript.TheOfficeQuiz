@@ -1,32 +1,45 @@
 
-// import { NavigationView } from "../views/NavigationView/NavigationView";
+import { NavigationView } from "../views/NavigationView/NavigationView";
 import { fetchCharacters, fetchQuotes, fetchEpisodes} from "./officeApi";
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
 import {GoodAnswerView} from "../views/GoodAnswerView/GoodAnswerView";
 import { ResultSave } from "../views/ResultView/ResultSave";
-/* import { CharactersGoodAnswerView } from "../CharactersGoodAnswerViews/charactersGoodAnswerViews"; */
+import { CharactersGoodAnswerView } from "../views/CharactersGoodAnswer/charactersGoodAnswerView";
 
 
 
 export const App = ({renderOn}) => {
     
-    // const navigationData = {
 
-    // }
+    const navigationData = {
+        buttonCategory1: "category 1",
+        buttonCategory2: "category 2",
+        buttonCategory3: "category 3",
+        questionWindow: "question",
+        buttonAnswer1: "answer 1",
+        buttonAnswer2: "answer 2",
+        buttonAnswer3: "answer 3",
+        buttonAnswer4: "answer 4",
+    }
     
-    // NavigationView({renderOn: renderOn, data: navigationData})
+    NavigationView({renderOn: renderOn, data: navigationData}) 
+
+    
+    NavigationView({renderOn: renderOn, data: navigationData})
     const blue = fetchQuotes().then(data => console.log(data))
+
     const clockData = {
         buttonStart: "START",
         buttonEnd: '🦄',
-        displayMin: "00",
+        displayMin: "01",
         displaySec:"00",
         paragraphMin: "minutes",
         paragraphSec: "secundes",
         plusBtn: "+",
         minBtn: "-",
     }
+  
 
     
     
@@ -40,10 +53,13 @@ export const App = ({renderOn}) => {
         // buttonAnswer3: "answer 3",
         // buttonAnswer4: "answer 4",
     }
-   
-    GoodAnswerView({renderOn: renderOn, data:questionsData});
-    TimerView({renderOn: renderOn, data: clockData});
 
+
+   CharactersGoodAnswerView({renderOn: renderOn, data:questionsData}); 
+    
+    GoodAnswerView({renderOn: renderOn, data:questionsData});
+    
+    TimerView({renderOn: renderOn, data: clockData});
    
     
     const resultData = {
@@ -61,8 +77,6 @@ export const App = ({renderOn}) => {
        
     }
 
-    
     ResultSave({renderOn: renderOn, data: saveData});
-    
-    /* CharactersGoodAnswerView({renderOn: renderOn, data:questionsData}); */
+
 }
