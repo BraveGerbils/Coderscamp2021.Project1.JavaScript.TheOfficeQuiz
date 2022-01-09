@@ -80,15 +80,14 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         const displayData = (question) =>{
             const dataArray = question.answers;
 
-            // const imgContainer = document.querySelector(".office-gamemode-character-template-img");
+            const imgContainer = document.querySelector(".office-gamemode-character-template-img");
             // const imgContainer = document.getElementById("question-img");
             const answer1 = document.getElementById("answer1");
             const answer2 = document.getElementById("answer2");
             const answer3 = document.getElementById("answer3");
             const answer4 = document.getElementById("answer4");
-
-            // imgContainer.style.zIndex = "1"
-            // imgContainer.style.backgroundImage = `url(${question.question})`
+            // tutaj zIndex nie był potrzebny, po prostu plików, które chcieliśmy podmieniac nie było w folderze /dist, co naprawiłem jak spojrzycie w package.json
+            imgContainer.style.backgroundImage = `url(${question.question})`;
 
             answer1.innerHTML = dataArray[0];
             answer2.innerHTML = dataArray[1];
@@ -113,6 +112,7 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
                 while (questionsArray.includes(question)){
                     question = randomQuestion(data);
                 }
+                console.log(question);
                 questionsArray.push(question.question);
                 setTimeout(function() { displayData(question); }, 500);
                 correctAnswer = getCorrectAnswer(question);
@@ -126,6 +126,8 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
                 while (questionsArray.includes(question)){
                     question = randomQuestion(data);
                 }
+                console.log(question);
+
                 questionsArray.push(question.question);
                 setTimeout(function() { displayData(question); }, 500);
                 correctAnswer = getCorrectAnswer(question);
@@ -136,3 +138,6 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         }))   
     })  
 }
+
+// tutaj brakuje logiki dla podmiany obrazka w pytaniu, ale no reszta jest generlanie tak samo jak w goodanswerView
+// mieszanie localStorage z sessionStorage

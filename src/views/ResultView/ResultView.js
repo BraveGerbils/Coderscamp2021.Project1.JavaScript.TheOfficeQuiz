@@ -1,6 +1,7 @@
 import style from "./resultView.styles.css";
 import { elementFrom } from "../../shared/dom";
 import { ResultMichaelSays } from "./ResultMichaelSays";
+//nieużywany import
 import { TimerView } from "../TimerView/TimerView";
 
 
@@ -45,6 +46,7 @@ export const ResultView = ({ renderOn, data }) => {
     let hit;
     let missed;
     let questions;
+    //nieużywana zmienna
     let userScore;
     let minutes;
     let secundes;
@@ -54,6 +56,7 @@ export const ResultView = ({ renderOn, data }) => {
     const resultQuestions = document.getElementById('result-questions');
     const resultQuotes = document.getElementById('result-quote');
 
+    //obie zmienne start nieużywane i generalnie słabe nazwy, lepiej byłoby startCountingCharacters i startCountingQuotes
     //start element 
     const start = document.getElementById('start').addEventListener('click', counting)
     const start2= document.getElementById('startQuotes').addEventListener('click', counting)
@@ -69,13 +72,19 @@ export const ResultView = ({ renderOn, data }) => {
         if (secundes == 0 && totalTime == 0) {
             clearInterval(countTimeInterval);
         }
-
+        
+        // zdecydowanie lepiej by było, gdyby ta funkcja była na zewnątrz counting 
+        // dodatkowo myslę, ze lepszym rozwiązaniem byłoby nazwanie jej "countSeconds" a gdyby czas się skończy to wtedy to co jest w linijkach 84 do 109 wrzucić w funkcję showResult bo ten kawałek kodu faktycznie to robi
+        // a jeszcze lepszym rozwiązaniem, który znacznie zmniejszył by kod w projekcie, byłoby tutaj umieszcze odpowiedniej funkcji, która pokazuje wynik i wywołanie jej z miejsca, w którym jest liczony czas. Wtedy tutaj nie trzeba byłoby niepotrzebne liczyć ponownie upływającego czasu.
+        
         function showResult() {
             totalTime--;
            
             //if time is up 
             if (totalTime <= 0) {
                 answerBoxes.forEach(answer => { answer.style.filter = "blur(4px)"; answer.disabled = true })
+                
+                // wiem, że w localStorage jest string, a tutaj porównujemy do number dlatego == a nie ===, ale lepiej i bezpieczniej jest zawsze korzystać z ===, wtedy nie ma rzutowania typów w trakcie porównywania co jest duzo bezpieczniejsze i mniej niekontrolowane
                 
                 //if the user dont click for any answer, show 0 points 0 questions
                 if (localStorage.goodAnswersKey == 0 && localStorage.badAnswersKey == 0) {

@@ -1,4 +1,4 @@
-
+// na początku wspomnę tylko o nieuzywanych importach orazz wielu komentarzach, żeby sie nie powtarzać :D
 
 import style from "./timerView.styles.css";
 import { ResultView } from "../ResultView/ResultView";
@@ -52,6 +52,7 @@ const templateHtml = ({data}) => {
         let startButtons = Array.from(startButtonsNode);
     
         let minutes = 0;
+        // seconds :D
         let secundes = 30;
     /*
         const plusMin = document.querySelector('.clock-addMin').addEventListener('click', function() {
@@ -89,11 +90,14 @@ const templateHtml = ({data}) => {
             }
         });;
         */
+
+        //nieużywana zmienna
         const end = document.querySelector('.clock-end').addEventListener('click', function() {
             history.go();
         });;
 
         startButtons.forEach(startButton => startButton.addEventListener('click', function(e) {
+            // zdecydowanie duzo lepsze byłoby display: none, bo wiemy, że hidden dalej może zostać przypadkowo kliknięte
             e.target.style.visibility = "hidden";
             buttons.forEach(button=> {button.style.visibility = "hidden"});
             sessionStorage.setItem("minutes", minutes);
@@ -103,6 +107,8 @@ const templateHtml = ({data}) => {
             let currentTime = 0;
             let displayInterval= setInterval(displayUpdate, 1000);
 
+
+            // generalnie myślę, że lepszą opcją byłoby liczenie tylko sekund i potem tylko dbanie o odpowiednie wyświetlanie gdy jest ich ponad minutę, 60 czyli minuta i 0 sekund oraz poniżej minuty, to uprościłoby ilość ifów poniżej
             function displayUpdate() {
                 if (minutes > 0 && secundes == 0) {
                     minutes--
@@ -127,6 +133,7 @@ const templateHtml = ({data}) => {
                         clockBckg.style.height = "0%"; 
                         e.target.style.visibility = "visible";
                         buttons.forEach(button=> {button.style.visibility = "visible"}) }, 2000);
+                        // czy musimy przypisywać 0 do totalTime? przecież i tak ten if odpali się tylko wtedy, a po nim nic już się nie wydarzy
                         totalTime == 0;
                         clockBckg.style.height = "100%";
                         clearInterval(displayInterval);
