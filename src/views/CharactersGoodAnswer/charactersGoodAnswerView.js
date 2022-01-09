@@ -101,7 +101,8 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
 
         displayData(question);
         let correctAnswer = getCorrectAnswer(question);
-        
+        // tutaj powtarza się kod dla losowania pytania, lepszym rozwiązaniem byłoby wydzielenie tego fragmentu do osobnej funkcji
+        //linijki 111-118 oraz 124-131
         answers.forEach(answer => answer.addEventListener('click', () => {
             if(answer.textContent === correctAnswer){
                 answer.classList.add("answer-good")
@@ -112,7 +113,6 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
                 while (questionsArray.includes(question)){
                     question = randomQuestion(data);
                 }
-                console.log(question);
                 questionsArray.push(question.question);
                 setTimeout(function() { displayData(question); }, 500);
                 correctAnswer = getCorrectAnswer(question);
@@ -126,8 +126,6 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
                 while (questionsArray.includes(question)){
                     question = randomQuestion(data);
                 }
-                console.log(question);
-
                 questionsArray.push(question.question);
                 setTimeout(function() { displayData(question); }, 500);
                 correctAnswer = getCorrectAnswer(question);
@@ -138,6 +136,5 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         }))   
     })  
 }
-
-// tutaj brakuje logiki dla podmiany obrazka w pytaniu, ale no reszta jest generlanie tak samo jak w goodanswerView
+// poprawiłem logikę, żeby obrazki w pytaniach się podmieniały
 // mieszanie localStorage z sessionStorage
