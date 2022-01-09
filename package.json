@@ -25,8 +25,7 @@
   "homepage": "https://github.com/BraveGerbils/Coderscamp2021.Project1.JavaScript.TheOfficeQuiz#readme",
   "devDependencies": {
     "json-server": "^0.17.0",
-    "parcel-bundler": "^1.12.5",
-    "parcel-plugin-static-files-copy": "^2.6.0"
+    "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "concurrently": "^6.4.0",
