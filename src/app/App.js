@@ -1,5 +1,6 @@
 
 import { NavigationView } from "../views/NavigationView/NavigationView";
+// niepotrzebny import
 import { fetchCharacters, fetchQuotes, fetchEpisodes} from "./officeApi";
 import {TimerView} from "../views/TimerView/TimerView.js";
 import { ResultView } from "../views/ResultView/ResultView";
@@ -11,6 +12,7 @@ import { CharactersGoodAnswerView } from "../views/CharactersGoodAnswer/characte
 
 export const App = ({renderOn}) => {
     
+    // poniższa zmienna, pomimo, że jest wysyłan do komponentu navigationView, nie jest w ogóle wykorzystywana
 
     const navigationData = {
         buttonCategory1: "category 1",
@@ -26,20 +28,23 @@ export const App = ({renderOn}) => {
     NavigationView({renderOn: renderOn, data: navigationData}) 
 
 
-
-    const clockData = {
+// myslę, że lepiej było te dane trzymać w samym komponencie z zegarem, ponieważ tutaj jest na sztywno wpisane 30 sekund, a w komponencie z
+// zegarem jest tam zmienna, która przetrzymuje faktyczną ilość sekund, co sprawia, że jak zmienię tam np na 50, a tutaj nie, to wyświetlać się będzie dalej 30, a faktycznie bedzie 50
+// nalezy zdecydowanie unikać tego typu powiązań, zamiast tutaj wpisywania na sztywno 30 możnaby użyćzmiennej z komponentu timerView, a tym bardziej unikać takich powiązań w różnych plikach czy nawet funkcjach 
+const clockData = {
         buttonStart: "START",
         buttonEnd: '🦄',
         displayMin: "00",
         displaySec:"30",
         paragraphMin: "minutes",
+        // seconds :D
         paragraphSec: "secundes",
         plusBtn: "+",
         minBtn: "-",
     }
   
 
-    
+    //po raz kolejny niepotrzebna zmienna, tutaj jeszcze bardziej niebezpiecznie, bo w komponencie charactersGoodAnswerView.js są wykorzystywane wartości buttonAnswer!, których tutaj nie ma
     
     const questionsData = {
         buttonCategory1: "category 1",
@@ -59,13 +64,16 @@ export const App = ({renderOn}) => {
     
     TimerView({renderOn: renderOn, data: clockData});
    
-    
+    // do resulatData i saveData, po co te puste obiekty wysyłać do funkcji?
+
     const resultData = {
        
     }
 
     ResultView({renderOn: renderOn, data: resultData});
     
+    //komentarz do wywalenia, nie powinno się trzymac komenatrzy w kodzie
+
     // const urlOffice = 'https://officeapi.dev/api/characters/random';
     // fetchCharacters();
     // fetchQuotes();

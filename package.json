@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"parcel -p 8765 index.html\" \"json-server --watch ./office_json_server/db.json\"",
+    "clean-dist": "rm -rf dist && mkdir dist",
+    "copy-assets": "cp -r static/assets/img/characters/* dist",
+    "copy-images": "cp -r static/images/* dist",
+    "copy-ui": "cp -r static/ui/* dist",
+    "copy-files": "npm run copy-images && npm run copy-assets && npm run copy-ui",
+    "dev": "npm run clean-dist && npm run copy-files && concurrently \"parcel -p 8765 index.html\" \"json-server --watch ./office_json_server/db.json\"",
     "prod": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +31,5 @@
     "concurrently": "^6.4.0",
     "regenerator-runtime": "^0.13.9",
     "s": "^1.0.0"
-
   }
 }

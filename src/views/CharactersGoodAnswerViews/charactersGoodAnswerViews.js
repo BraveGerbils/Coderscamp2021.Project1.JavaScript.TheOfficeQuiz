@@ -72,5 +72,4 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
     }))     
 }
 
-
-
+// ten folder chyba w ogóle niewykorzystywany 

@@ -128,6 +128,7 @@ export const NavigationView = ({renderOn, data}) => {
     const playButton = document.getElementById("start");
     playButton.addEventListener("click", () => {
     document.getElementById("charactersView").classList.add('playGame');
+    //fatalne nazwy dla id elementu i dodatkowo pisze się disappear
     document.getElementById("dissapear").classList.add('removeClass');
     document.getElementById("dissapearToo").classList.add('removeClass');
     
@@ -136,6 +137,7 @@ export const NavigationView = ({renderOn, data}) => {
     const playButtonQuotes = document.getElementById("startQuotes");
     playButtonQuotes.addEventListener("click", () => {
     document.getElementById("quotesView").classList.add('playGame');
+        //fatalne nazwy dla id elementu i dodatkowo pisze się disappear
     document.getElementById("dissapear").classList.add('removeClass');
     document.getElementById("dissapearToo").classList.add('removeClass');
     

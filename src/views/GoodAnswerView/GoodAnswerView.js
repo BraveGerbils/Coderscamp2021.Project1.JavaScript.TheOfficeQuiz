@@ -1,3 +1,5 @@
+//nieużywane importy
+
 import style from "./goodAnswer.styles.css"; 
 import { quotesQuestion } from "../../modes/QuotesQuestion";
 import { elementFrom } from "../../shared/dom";
@@ -140,4 +142,6 @@ export const GoodAnswerView = ({renderOn, data}) => {
         }))   
     })  
 }
+
+// ogólnie tutaj jest spoko, ja bym jedynie pomyślał nad tym, żeby logikę liczenia dobrych, złych odpowiedzi do osobnej struktury,  może jakaś klasa czy coś w tym stylu, bo tutaj w tym momencie plik jest mało czytelny momentami
 

@@ -1,5 +1,6 @@
 export const ResultMichaelSays = () => {
         
+    // to samo jest w komponencie wyższym czyli w ResultView, można byłoby to po prostu przesłać jako argumewnty funkcji, w tym momencie podwójnie się wykonuje kod, niepotrzebne powtórzenie
     const resultQuotes = document.getElementById('result-quote');
     let hit = Number(localStorage.getItem("goodAnswersKey"))
     let missed = Number(localStorage.getItem("badAnswersKey"))

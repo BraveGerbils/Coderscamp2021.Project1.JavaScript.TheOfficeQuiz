@@ -80,15 +80,14 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         const displayData = (question) =>{
             const dataArray = question.answers;
 
-            // const imgContainer = document.querySelector(".office-gamemode-character-template-img");
+            const imgContainer = document.querySelector(".office-gamemode-character-template-img");
             // const imgContainer = document.getElementById("question-img");
             const answer1 = document.getElementById("answer1");
             const answer2 = document.getElementById("answer2");
             const answer3 = document.getElementById("answer3");
             const answer4 = document.getElementById("answer4");
-
-            // imgContainer.style.zIndex = "1"
-            // imgContainer.style.backgroundImage = `url(${question.question})`
+            // tutaj zIndex nie był potrzebny, po prostu plików, które chcieliśmy podmieniac nie było w folderze /dist, co naprawiłem jak spojrzycie w package.json
+            imgContainer.style.backgroundImage = `url(${question.question})`;
 
             answer1.innerHTML = dataArray[0];
             answer2.innerHTML = dataArray[1];
@@ -102,7 +101,8 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
 
         displayData(question);
         let correctAnswer = getCorrectAnswer(question);
-        
+        // tutaj powtarza się kod dla losowania pytania, lepszym rozwiązaniem byłoby wydzielenie tego fragmentu do osobnej funkcji
+        //linijki 111-118 oraz 124-131
         answers.forEach(answer => answer.addEventListener('click', () => {
             if(answer.textContent === correctAnswer){
                 answer.classList.add("answer-good")
@@ -136,3 +136,5 @@ export const CharactersGoodAnswerView = ({renderOn, data}) => {
         }))   
     })  
 }
+// poprawiłem logikę, żeby obrazki w pytaniach się podmieniały
+// mieszanie localStorage z sessionStorage
